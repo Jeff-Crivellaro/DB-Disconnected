@@ -59,7 +59,7 @@ jobs:
 
       # ── 2. Set up Python ─────────────────────────────────────────
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.14'
           cache: 'pip'
@@ -112,11 +112,11 @@ jobs:
           ref: main   # pull the commit we just pushed
 
       - name: Upload artifact for Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           # Serve the root; adjust path if your HTML lives in a subdirectory
           path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

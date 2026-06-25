@@ -52,7 +52,7 @@ jobs:
     steps:
       # ── 1. Check out the repository ──────────────────────────────
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Use a deploy key or the default GITHUB_TOKEN (read/write)
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -107,7 +107,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout updated repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main   # pull the commit we just pushed
 

@@ -92,7 +92,7 @@ def fetch_issues(base, project, headers):
     fields = "summary,status,assignee,updated,priority,issuetype,parent"
 
     while True:
-        url = f"{base}/rest/api/3/search/jql API"
+        url = f"{base}/rest/api/3/search/jql"
         params = {
             "jql": jql,
             "fields": fields,

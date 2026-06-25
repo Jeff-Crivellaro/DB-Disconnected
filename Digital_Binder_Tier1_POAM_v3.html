@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Digital Binder · Tier 1 POA&M · June–December 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f4f6f9;color:#1a1a18;font-size:13px}
+.hdr{background:#0d2a4a;color:#fff;padding:14px 20px 12px}
+.hdr h1{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.hdr p{font-size:11px;color:#a8c4e0;margin-top:2px}
+.hdr-chips{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.chip{font-size:10px;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;color:#e0ecf8}
+.tabs{display:flex;background:#fff;border-bottom:1px solid #d3d1c7;overflow-x:auto;padding:0 16px}
+.tab{padding:10px 13px;font-size:12px;font-weight:500;color:#5f5e5a;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;margin-bottom:-1px}
+.tab.on{color:#0d2a4a;border-bottom-color:#185FA5;font-weight:700}
+.pnl{display:none;padding:18px}
+.pnl.on{display:block}
+.card{background:#fff;border-radius:10px;border:1px solid #d3d1c7;padding:14px;margin-bottom:12px}
+.sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5f5e5a;margin:12px 0 6px}
+.sl:first-child{margin-top:0}
+.lbl{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:600}
+.lr{background:#FCEBEB;color:#A32D2D}.la{background:#FAEEDA;color:#854F0B}
+.lg{background:#EAF3DE;color:#3B6D11}.lb{background:#E6F1FB;color:#185FA5}
+.lp{background:#EEEDFE;color:#534AB7}.lgr{background:#f1efe8;color:#5f5e5a}
+.note{padding:10px 14px;border:1px solid #185FA5;border-radius:8px;background:#EDF4FD;font-size:11px;color:#1a3a5c;margin:10px 0;line-height:1.5}
+.warn{padding:10px 14px;border:1px solid #A32D2D;border-radius:8px;background:#FCEBEB;font-size:11px;color:#7a1c1c;margin:8px 0;line-height:1.5}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+table{width:100%;border-collapse:collapse;font-size:11px;margin:6px 0}
+th{background:#f1efe8;padding:6px 10px;text-align:left;font-weight:700;border:1px solid #d3d1c7}
+td{padding:6px 10px;border:1px solid #d3d1c7;vertical-align:top;color:#3a3a38}
+tr:nth-child(even) td{background:#fafaf8}
+.prog-wrap{background:#e8e6df;border-radius:4px;height:7px;overflow:hidden;margin:5px 0 2px}
+.prog-bar{height:100%;border-radius:4px;background:#185FA5;transition:width .4s}
+.prog-lbl{font-size:10px;color:#5f5e5a;text-align:right}
+.btn{padding:6px 14px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-family:inherit;font-weight:600}
+.btn-blue{background:#185FA5;color:#fff}
+.btn-out{background:none;border:1px solid #d3d1c7;color:#5f5e5a}
+.mc{background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden}
+.mc-hdr{padding:10px 14px;color:#fff;font-weight:700;font-size:13px}
+.mc-hdr span{font-size:10px;font-weight:500;opacity:.85;display:block;margin-top:2px}
+.mc-body{padding:12px 14px}
+.m1 .mc-hdr{background:#185FA5}
+.m2 .mc-hdr{background:#1a6e9e}
+.m3 .mc-hdr{background:#3B6D11}
+.m4 .mc-hdr{background:#854F0B}
+.m5 .mc-hdr{background:#0d2a4a}
+.m6 .mc-hdr{background:#534AB7}
+.m7 .mc-hdr{background:#993C1D}
+.il{list-style:none}
+.il li{font-size:11px;color:#3a3a38;padding:3px 0 3px 12px;position:relative;border-bottom:1px solid #f0ede8;line-height:1.4}
+.il li:last-child{border-bottom:none}
+.il li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:#b4b2a9}
+.cl{list-style:none}
+.cl li{display:flex;align-items:flex-start;gap:8px;padding:4px 0;border-bottom:1px solid #f0ede8;font-size:11px;color:#3a3a38}
+.cl li:last-child{border-bottom:none}
+.cl li input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:#185FA5;cursor:pointer}
+.cl li label{cursor:pointer;line-height:1.4}
+.cl li input:checked+label{text-decoration:line-through;color:#b4b2a9}
+.cat-hdr{font-size:11px;font-weight:700;color:#0d2a4a;background:#f4f6f9;padding:5px 10px;border-radius:6px;margin:8px 0 4px;display:flex;align-items:center;gap:6px}
+.acc-btn{width:100%;text-align:left;background:#fff;border:1px solid #d3d1c7;border-radius:8px;padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;font-size:13px;font-weight:700;color:#0d2a4a;margin-bottom:6px}
+.acc-btn .acc-right{display:flex;align-items:center;gap:10px}
+.acc-btn .arr{font-size:10px;color:#5f5e5a;transition:transform .2s}
+.acc-btn.open .arr{transform:rotate(180deg)}
+.acc-body{display:none;background:#fff;border:1px solid #d3d1c7;border-top:none;border-radius:0 0 8px 8px;padding:12px 14px;margin-top:-7px;margin-bottom:6px}
+.acc-body.open{display:block}
+.sr-hdr{background:#0d2a4a;color:#fff;padding:14px 18px;border-radius:10px 10px 0 0;margin:-14px -14px 14px}
+.sr-hdr h2{font-size:14px;font-weight:700}
+.sr-hdr p{font-size:10px;color:#a8c4e0;margin-top:2px}
+.edt{outline:none;border-bottom:1px dashed #6f8aa8;min-width:60px;display:inline-block;padding:0 2px;color:#dfeaf6}
+.edt:focus{border-bottom-color:#fff;background:rgba(255,255,255,.1);border-radius:2px}
+.mbox{text-align:center;padding:12px;background:#f8fafd;border:1px solid #d3d1c7;border-radius:8px}
+.mbox-n{font-size:22px;font-weight:700;color:#185FA5}
+.mbox-l{font-size:10px;color:#5f5e5a;margin-top:2px}
+.statpill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px}
+.sp-a{background:#FAEEDA;color:#854F0B;border:1px solid #BA7517}
+.sp-g{background:#EAF3DE;color:#3B6D11;border:1px solid #3B6D11}
+.sp-r{background:#FCEBEB;color:#A32D2D;border:1px solid #A32D2D}
+.stale{display:inline-block;font-size:9px;font-weight:700;background:#FCEBEB;color:#A32D2D;padding:1px 5px;border-radius:3px}
+.fresh{display:inline-block;font-size:9px;font-weight:700;background:#EAF3DE;color:#3B6D11;padding:1px 5px;border-radius:3px}
+.dk{font-size:9px;font-weight:600;color:#185FA5;background:#E6F1FB;padding:0 5px;border-radius:3px;white-space:nowrap}
+.srbox{border-left:3px solid #5f5e5a;background:#fafaf8;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:10px}
+.srbox h3{font-size:12px;font-weight:700;color:#0d2a4a;margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.sprint-tag{display:inline-block;font-size:9px;font-weight:700;background:#0d2a4a;color:#fff;padding:1px 6px;border-radius:3px;margin-right:3px}
+.offb{font-size:9px;font-weight:600;color:#5f5e5a;background:#f1efe8;border:1px solid #d3d1c7;padding:0 5px;border-radius:3px;white-space:nowrap}
+.epic-card{background:#fff;border-radius:10px;border:1px solid #d3d1c7;padding:12px;border-left:4px solid #185FA5}
+.epic-card .ec-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:6px}
+.epic-card .ec-name{font-size:12px;font-weight:700;color:#0d2a4a;line-height:1.3}
+.milestone-badge{display:inline-flex;align-items:center;gap:5px;background:#0d2a4a;color:#fff;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;margin-top:8px}
+.milestone-badge::before{content:'◆';font-size:8px;color:#a8c4e0}
+.legend-box{display:flex;gap:12px;align-items:center;font-size:10px;color:#5f5e5a;padding:6px 10px;background:#fafaf8;border:1px solid #d3d1c7;border-radius:6px;margin-bottom:10px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-swatch{width:12px;height:12px;border-radius:2px}
+@media print{
+  .tabs,.tab,.btn,.acc-btn .arr{display:none!important}
+  .pnl{display:block!important;page-break-after:always}
+  body{background:#fff}
+  .acc-body{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <h1>Digital Binder — Tier 1 Offline Capability</h1>
+  <p>Plan of Action &amp; Milestones · Electron-First · Reconciled to Jira (DISCO) · June–December 2026</p>
+  <div class="hdr-chips">
+    <span class="chip">Prototype Target: Oct 2026 (M5)</span>
+    <span class="chip">RSO Deployment Target: Dec 2026 (M8)</span>
+    <span class="chip">8 Milestone Demos · 7 Months</span>
+    <span class="chip">14 DISCO Sprints · S3–S16</span>
+    <span class="chip">6 Jira Epics · 62 Child Issues</span>
+    <span class="chip">Classification: [SET AS APPROPRIATE]</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab on" onclick="sw('t0',this)">🗂 Offline POA&amp;M</button>
+  <button class="tab" onclick="sw('t1',this)">📋 Sprint Plan</button>
+  <button class="tab" onclick="sw('t2',this)">📅 Monthly Objectives</button>
+  <button class="tab" onclick="sw('t3',this)">✅ Team Checklists</button>
+  <button class="tab" onclick="sw('t4',this)">📊 Status Report</button>
+</nav>
+
+<!-- ══════════════════════ TAB 0 · OFFLINE POA&M ══════════════════════ -->
+<section id="t0" class="pnl on">
+
+  <div class="note" style="margin-bottom:14px">
+    <strong>Purpose of this view:</strong> This tab presents the full offline-capability roadmap for IT Governance, Security &amp; ATO stakeholders, and the Development Team. It shows what will be built, when each group of features is ready to demonstrate, and what a stakeholder can expect to see at each monthly checkpoint — in plain language. Execution runs on a two-week cadence (<strong>DISCO Sprints S3–S16</strong>); a demonstrable milestone is presented to leadership at the close of every month. The working prototype is targeted for the <strong>M5 demo in October 2026</strong>; production deployment to RSO follows at <strong>M8 in December 2026</strong>.
+  </div>
+
+  <div class="g3" style="margin-bottom:14px">
+    <div class="card" style="border-top:3px solid #185FA5;padding:12px">
+      <div style="font-size:11px;font-weight:700;color:#185FA5;margin-bottom:5px">👥 IT Governance</div>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.5">Use this view to track progress against committed milestones, understand what is demonstrable each month, and identify decision points that require your input — particularly around distribution, ATO scope, and deployment authorization.</div>
+    </div>
+    <div class="card" style="border-top:3px solid #854F0B;padding:12px">
+      <div style="font-size:11px;font-weight:700;color:#854F0B;margin-bottom:5px">🔐 Security &amp; ATO</div>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.5">Security-relevant work is distributed across the full timeline: CAC integration in June–July, encryption-at-rest going live in September, and upload-failure tracking in December. ATO documentation runs in parallel throughout. Key decision points are flagged below.</div>
+    </div>
+    <div class="card" style="border-top:3px solid #3B6D11;padding:12px">
+      <div style="font-size:11px;font-weight:700;color:#3B6D11;margin-bottom:5px">⚙️ Development Team</div>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.5">This tab summarizes deliverables at the milestone level. For the two-week DISCO Sprint breakdown, epic status, task-level checklists, and the live Jira snapshot, use the <em>Sprint Plan</em>, <em>Monthly Objectives</em>, <em>Team Checklists</em>, and <em>Status Report</em> tabs.</div>
+    </div>
+  </div>
+
+  <div class="sl" style="margin-bottom:8px">Deliverable Gantt — June through December 2026 · milestone demos at month close</div>
+  <div class="card" style="padding:14px;overflow-x:auto">
+    <svg width="100%" viewBox="0 0 1060 570" style="min-width:720px;display:block">
+      <rect x="200" y="0"  width="120" height="570" fill="#f8fafd" opacity=".6"/>
+      <rect x="440" y="0"  width="120" height="570" fill="#f8fafd" opacity=".6"/>
+      <rect x="680" y="0"  width="120" height="570" fill="#f8fafd" opacity=".6"/>
+      <rect x="920" y="0"  width="120" height="570" fill="#f8fafd" opacity=".6"/>
+      <rect x="0" y="0" width="1060" height="30" fill="#0d2a4a"/>
+      <text style="font-size:10px;font-weight:700;fill:#a8c4e0" x="8" y="15" dominant-baseline="central">WORK STREAM</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="260" y="15" text-anchor="middle" dominant-baseline="central">JUNE</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="380" y="15" text-anchor="middle" dominant-baseline="central">JULY</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="500" y="15" text-anchor="middle" dominant-baseline="central">AUGUST</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="620" y="15" text-anchor="middle" dominant-baseline="central">SEPTEMBER</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="740" y="15" text-anchor="middle" dominant-baseline="central">OCTOBER</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="860" y="15" text-anchor="middle" dominant-baseline="central">NOVEMBER</text>
+      <text style="font-size:11px;font-weight:700;fill:#fff" x="990" y="15" text-anchor="middle" dominant-baseline="central">DECEMBER</text>
+      <line x1="200" y1="30" x2="200" y2="534" stroke="#d3d1c7" stroke-width=".5"/>
+      <line x1="320" y1="30" x2="320" y2="534" stroke="#d3d1c7" stroke-width="1.5"/>
+      <line x1="440" y1="30" x2="440" y2="534" stroke="#d3d1c7" stroke-width=".5"/>
+      <line x1="560" y1="30" x2="560" y2="534" stroke="#d3d1c7" stroke-width="1.5"/>
+      <line x1="680" y1="30" x2="680" y2="534" stroke="#d3d1c7" stroke-width=".5"/>
+      <line x1="800" y1="30" x2="800" y2="534" stroke="#d3d1c7" stroke-width="1.5"/>
+      <line x1="920" y1="30" x2="920" y2="534" stroke="#d3d1c7" stroke-width=".5"/>
+      <line x1="1040" y1="30" x2="1040" y2="534" stroke="#d3d1c7" stroke-width=".5"/>
+      <line x1="0" y1="72"  x2="1060" y2="72"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="114"  x2="1060" y2="114"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="156"  x2="1060" y2="156"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="198"  x2="1060" y2="198"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="240"  x2="1060" y2="240"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="282"  x2="1060" y2="282"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="324"  x2="1060" y2="324"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="366"  x2="1060" y2="366"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="408"  x2="1060" y2="408"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="450"  x2="1060" y2="450"  stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="492"  x2="1060" y2="492"  stroke="#eeede8" stroke-width=".5"/>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="43" dominant-baseline="central">Electron App Foundation</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="58" dominant-baseline="central">M1 · POC · CAC research · DB/enc research (DISCO-3)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="85" dominant-baseline="central">Offline Auth &amp; Local Database</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="100" dominant-baseline="central">M2 · offline CAC auth · DB · CI/CD (DISCO-13/8)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="127" dominant-baseline="central">Pre-Shift Sync &amp; Core Form Saves</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="142" dominant-baseline="central">M3 · prep binder · 781/InfoNotes/781F (DISCO-5/7)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="169" dominant-baseline="central">781H Offline &amp; Encryption Live</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="184" dominant-baseline="central">M4 · 781H save · RBAC · encrypt-at-rest (DISCO-8/7)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="211" dominant-baseline="central">Sync-Back, Conflict &amp; Prototype</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="226" dominant-baseline="central">M5 ★ · post-shift sync · audit · queue (DISCO-6/7)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="253" dominant-baseline="central">781A Offline Actions (Core)</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="268" dominant-baseline="central">M6 · manual JCN · create/close/WCE/defer (DISCO-7)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="295" dominant-baseline="central">Upload Failure Tracking</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="310" dominant-baseline="central">M7 · failure mgmt screen · error handling (DISCO-6)</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="337" dominant-baseline="central">RSO Deployment</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="352" dominant-baseline="central">M8 · production deploy · M1–M7 capability</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="379" dominant-baseline="central">Data Validation Engine</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="394" dominant-baseline="central">DISCO-54/55 · FE rules · augmented Aug–Oct</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="421" dominant-baseline="central">Test Documentation &amp; Automation</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="436" dominant-baseline="central">Off-board · continuous · test cases + impl</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="463" dominant-baseline="central">UI/UX Design Support</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="478" dominant-baseline="central">Off-board · design one DISCO Sprint ahead</text>
+      <text style="font-size:10px;fill:#1a1a18;font-weight:600" x="8" y="505" dominant-baseline="central">ATO &amp; Security Documentation</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="8" y="520" dominant-baseline="central">Off-board (eMASS) · SSP · STIG · parallel</text>
+      <rect x="204" y="37" width="112" height="28" rx="4" fill="#185FA5"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="260" y="46" text-anchor="middle" dominant-baseline="central">POC · CAC research</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="260" y="58" text-anchor="middle" dominant-baseline="central">+ DB research</text>
+      <rect x="324" y="79" width="112" height="28" rx="4" fill="#1a6e9e"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="380" y="88" text-anchor="middle" dominant-baseline="central">CAC offline auth</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="380" y="100" text-anchor="middle" dominant-baseline="central">DB · CI/CD sign</text>
+      <rect x="444" y="121" width="112" height="28" rx="4" fill="#3B6D11"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="500" y="130" text-anchor="middle" dominant-baseline="central">Prep binder ·</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="500" y="142" text-anchor="middle" dominant-baseline="central">781/InfoNotes/781F</text>
+      <rect x="564" y="163" width="112" height="28" rx="4" fill="#854F0B"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="620" y="172" text-anchor="middle" dominant-baseline="central">781H · RBAC ·</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="620" y="184" text-anchor="middle" dominant-baseline="central">encryption live</text>
+      <rect x="684" y="205" width="112" height="28" rx="4" fill="#0d2a4a"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="740" y="214" text-anchor="middle" dominant-baseline="central">Post-shift sync ·</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="740" y="226" text-anchor="middle" dominant-baseline="central">conflict · audit</text>
+      <rect x="804" y="247" width="112" height="28" rx="4" fill="#534AB7"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="860" y="256" text-anchor="middle" dominant-baseline="central">Manual JCN ·</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="860" y="268" text-anchor="middle" dominant-baseline="central">781A create/close</text>
+      <rect x="924" y="289" width="112" height="28" rx="4" fill="#993C1D"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="980" y="298" text-anchor="middle" dominant-baseline="central">Failure mgmt ·</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="980" y="310" text-anchor="middle" dominant-baseline="central">error handling</text>
+      <rect x="924" y="331" width="132" height="28" rx="4" fill="#0d2a4a"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="990" y="340" text-anchor="middle" dominant-baseline="central">RSO DEPLOY —</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="990" y="352" text-anchor="middle" dominant-baseline="central">M1–M7 capability</text>
+      <rect x="444" y="373" width="352" height="28" rx="4" fill="#3B6D11" opacity="0.7"/>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="620" y="382" text-anchor="middle" dominant-baseline="central">Data validation</text>
+      <text style="font-size:9px;fill:#fff;font-weight:600" x="620" y="394" text-anchor="middle" dominant-baseline="central">rules engine (phased)</text>
+      <rect x="204" y="415" width="852" height="28" rx="4" fill="none" stroke="#5f5e5a" stroke-width="1" stroke-dasharray="5 3"/>
+      <text style="font-size:9px;fill:#5f5e5a" x="630" y="424" text-anchor="middle" dominant-baseline="central">Continuous — test case docs</text>
+      <text style="font-size:9px;fill:#5f5e5a" x="630" y="436" text-anchor="middle" dominant-baseline="central">+ impl each DISCO Sprint</text>
+      <rect x="204" y="457" width="712" height="28" rx="4" fill="#BA7517" opacity="0.5"/>
+      <text style="font-size:9px;fill:#4a3000;font-weight:600" x="560" y="466" text-anchor="middle" dominant-baseline="central">UI/UX design support —</text>
+      <text style="font-size:9px;fill:#4a3000;font-weight:600" x="560" y="478" text-anchor="middle" dominant-baseline="central">one DISCO Sprint ahead</text>
+      <rect x="204" y="499" width="852" height="28" rx="4" fill="none" stroke="#A32D2D" stroke-width="1" stroke-dasharray="5 3"/>
+      <text style="font-size:9px;fill:#A32D2D" x="630" y="508" text-anchor="middle" dominant-baseline="central">ATO parallel track —</text>
+      <text style="font-size:9px;fill:#A32D2D" x="630" y="520" text-anchor="middle" dominant-baseline="central">eMASS · SSP · STIG (off-board)</text>
+      <polygon points="320,29 327,38 320,47 313,38" fill="#185FA5"/>
+      <text style="font-size:8px;fill:#185FA5;font-weight:700" x="320" y="55" text-anchor="middle">M1</text>
+      <polygon points="440,29 447,38 440,47 433,38" fill="#1a6e9e"/>
+      <text style="font-size:8px;fill:#1a6e9e;font-weight:700" x="440" y="55" text-anchor="middle">M2</text>
+      <polygon points="560,29 567,38 560,47 553,38" fill="#3B6D11"/>
+      <text style="font-size:8px;fill:#3B6D11;font-weight:700" x="560" y="55" text-anchor="middle">M3</text>
+      <polygon points="680,29 687,38 680,47 673,38" fill="#854F0B"/>
+      <text style="font-size:8px;fill:#854F0B;font-weight:700" x="680" y="55" text-anchor="middle">M4</text>
+      <polygon points="800,29 807,38 800,47 793,38" fill="#0d2a4a"/>
+      <text style="font-size:8px;fill:#0d2a4a;font-weight:700" x="800" y="55" text-anchor="middle">M5 ★</text>
+      <polygon points="920,29 927,38 920,47 913,38" fill="#534AB7"/>
+      <text style="font-size:8px;fill:#534AB7;font-weight:700" x="920" y="55" text-anchor="middle">M6</text>
+      <polygon points="1040,29 1047,38 1040,47 1033,38" fill="#993C1D"/>
+      <text style="font-size:8px;fill:#993C1D;font-weight:700" x="1040" y="55" text-anchor="middle">M7·M8</text>
+      <rect x="776" y="544" width="48" height="13" rx="2" fill="#0d2a4a"/>
+      <text style="font-size:8px;font-weight:700;fill:#fff" x="800" y="551" text-anchor="middle" dominant-baseline="central">PROTOTYPE</text>
+      <rect x="953" y="544" width="84" height="13" rx="2" fill="#993C1D"/>
+      <text style="font-size:8px;font-weight:700;fill:#fff" x="995" y="551" text-anchor="middle" dominant-baseline="central">RSO DEPLOYMENT</text>
+      <line x1="296" y1="30" x2="296" y2="534" stroke="#A32D2D" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <rect x="278" y="30" width="58" height="13" rx="2" fill="#A32D2D"/>
+      <text style="font-size:8px;font-weight:700;fill:#fff" x="307" y="37" text-anchor="middle" dominant-baseline="central">TODAY · S3</text>
+    </svg>
+    </svg>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;font-size:10px;color:#5f5e5a;align-items:center;padding:0 4px">
+      <strong>Legend:</strong>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#185FA5;display:inline-block"></span>M1 · Jun</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#1a6e9e;display:inline-block"></span>M2 · Jul</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#3B6D11;display:inline-block"></span>M3 · Aug</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#854F0B;display:inline-block"></span>M4 · Sep</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#0d2a4a;display:inline-block"></span>M5 · Oct ★ Prototype</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#534AB7;display:inline-block"></span>M6 · Nov</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:#993C1D;display:inline-block"></span>M7/M8 · Dec · RSO Deploy</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;border-radius:2px;background:none;border:1px dashed #5f5e5a;display:inline-block"></span>Continuous (off-board) tracks</span>
+    </div>
+  </div>
+
+  <div class="sl" style="margin-bottom:8px">Monthly milestone summary &amp; stakeholder expectations</div>
+
+  <!-- June + July -->
+  <div class="g2" style="margin-bottom:10px">
+    <div style="background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden">
+      <div style="background:#185FA5;padding:10px 14px;color:#fff">
+        <div style="font-weight:700;font-size:13px">June 2026 — Milestone 1</div>
+        <div style="font-size:10px;opacity:.85;margin-top:2px">Electron Foundation · Demo at close of DISCO Sprint 3 (30 Jun)</div>
+      </div>
+      <div style="padding:12px 14px">
+        <div class="sl" style="margin-top:0">What stakeholders will see</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">The Digital Binder application launches for the first time as a desktop application on a Windows PC — not in a browser. The team demonstrates the app opening, the build pipeline producing an installer, and the research read-out covering CAC access from within Electron, the local-database selection, and encryption-at-rest in a disconnected state. No form data is offline yet; this milestone proves the <em>delivery vehicle</em> and closes the research the rest of the program depends on.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>Online Electron prototype of the Digital Binder demonstrated <span class="dk">DISCO-1 ✓</span></li>
+          <li>Key Design Decisions doc for the Electron app <span class="dk">DISCO-14 ✓</span></li>
+          <li>CAC reader access from within Electron, researched and documented <span class="dk">DISCO-16 ✓</span></li>
+          <li>Data-sync process researched and documented <span class="dk">DISCO-15 ✓</span></li>
+          <li>Local DB selection / schema &amp; encryption-at-rest research — close out of Peer Review <span class="dk">DISCO-11 / 12</span></li>
+          <li>CI/CD pipeline expanded for Electron build &amp; unsigned artifact push <span class="dk">DISCO-23</span></li>
+          <li>Emerging scope: FIPS-compliant open-source DB library researched/prototyped <span class="dk">DISCO-69/70/71</span></li>
+        </ul>
+        <div class="sl">Decisions required from stakeholders</div>
+        <ul class="il">
+          <li><strong>IT Governance / ATO:</strong> Confirm distribution mechanism (MECM/MSI vs. Artifact Registry) and begin ISSO/ISSM assignment</li>
+          <li><strong>Security:</strong> Review CAC and encryption-at-rest research; advise on an acceptable FIPS-compliant key-management approach</li>
+        </ul>
+        <div style="margin-top:8px;padding:6px 10px;background:#EDF4FD;border-radius:6px;font-size:10px;color:#1a3a5c"><strong>Audience check:</strong> At the June demo, expect a desktop application and a research read-out. No disconnected form data yet — that begins in July.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden">
+      <div style="background:#1a6e9e;padding:10px 14px;color:#fff">
+        <div style="font-weight:700;font-size:13px">July 2026 — Milestone 2</div>
+        <div style="font-size:10px;opacity:.85;margin-top:2px">Offline Auth &amp; Local Database · Demo at close of DISCO Sprint 5 (28 Jul)</div>
+      </div>
+      <div style="padding:12px 14px">
+        <div class="sl" style="margin-top:0">What stakeholders will see</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">A maintainer inserts their CAC and authenticates into the Digital Binder desktop app — without any network connection. The local database that will hold offline form data is created in its shared location and structured. The CI/CD pipeline now produces a DoD-signed installer automatically. This milestone establishes the security anchor (identity) and the storage foundation for all subsequent offline work.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>Single-user offline CAC authentication — log in while disconnected <span class="dk">DISCO-22</span></li>
+          <li>Electron scaffolding &amp; build infrastructure; security boundaries &amp; IPC <span class="dk">DISCO-20 / 21</span></li>
+          <li>CI/CD pipeline expanded for DoD code signing <span class="dk">DISCO-24</span></li>
+          <li>Front-end database created in a shared location; local DB tables &amp; initialization <span class="dk">DISCO-17 / 26 / 27</span></li>
+          <li>activeUser endpoint returning active users and metadata; data-sourcing research <span class="dk">DISCO-25 / 67</span></li>
+          <li>Pre-shift crew-chief tail-selection design <span class="dk">DISCO-10 ✓</span></li>
+        </ul>
+        <div class="sl">Decisions required from stakeholders</div>
+        <ul class="il">
+          <li><strong>IT Governance:</strong> Approve CI/CD output format and Artifact Registry / MECM distribution location</li>
+          <li><strong>Security:</strong> Confirm acceptance of the offline CAC auth approach identified in June research</li>
+        </ul>
+        <div style="margin-top:8px;padding:6px 10px;background:#EDF4FD;border-radius:6px;font-size:10px;color:#1a3a5c"><strong>Audience check:</strong> At the July demo, expect a live CAC authentication on a disconnected device and a view of the local database schema. No form data synced to the device yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- August + September -->
+  <div class="g2" style="margin-bottom:10px">
+    <div style="background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden">
+      <div style="background:#3B6D11;padding:10px 14px;color:#fff">
+        <div style="font-weight:700;font-size:13px">August 2026 — Milestone 3</div>
+        <div style="font-size:10px;opacity:.85;margin-top:2px">Pre-Shift Sync &amp; Core Form Saves · Demo at close of DISCO Sprint 7 (25 Aug)</div>
+      </div>
+      <div style="padding:12px 14px">
+        <div class="sl" style="margin-top:0">What stakeholders will see</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">Before a shift begins, a maintainer pulls down the data needed for their aircraft onto the device through the Prepare Binder modal. The team demonstrates the app downloading and storing 781, Info Notes, and 781F data for a selected tail, then saving changes to those forms while disconnected. An online re-sync refreshes data on reconnect, and the foundation of the data-validation rules engine is live on the front end.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>Prepare Binder selection &amp; progress modals built (FE) <span class="dk">DISCO-28 / 68</span></li>
+          <li>Endpoint refreshes data for a tail list; sync refreshed data to local DB <span class="dk">DISCO-29 / 30</span></li>
+          <li>Queuing logic for saves and XMITs — FE and BE service <span class="dk">DISCO-31 / 32</span></li>
+          <li>Offline save actions: Info Notes, 781F, 781 <span class="dk">DISCO-33 / 34 / 35</span></li>
+          <li>Data Validation Rules Engine on the FE (initial) <span class="dk">DISCO-54</span></li>
+        </ul>
+        <div style="margin-top:8px;padding:6px 10px;background:#EDF4FD;border-radius:6px;font-size:10px;color:#1a3a5c"><strong>Audience check:</strong> At the August demo, expect a pre-shift sync where a tail is selected and data downloads to the device; the app then goes offline and saves changes to 781 / Info Notes / 781F from local storage.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden">
+      <div style="background:#854F0B;padding:10px 14px;color:#fff">
+        <div style="font-weight:700;font-size:13px">September 2026 — Milestone 4</div>
+        <div style="font-size:10px;opacity:.85;margin-top:2px">781H Offline &amp; Encryption Live · Demo at close of DISCO Sprint 9 (22 Sep)</div>
+      </div>
+      <div style="padding:12px 14px">
+        <div class="sl" style="margin-top:0">What stakeholders will see</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">Offline coverage expands to the 781H, and a second maintainer can sign an 781H Engineering Review while the device is offline. Role-based access control governs which actions each role may take. Database encryption-at-rest goes live using the FIPS-compliant approach researched in June, and the front end now shows when the app is in Offline Mode and how many changes are pending upload. Conflict/failure screens are wireframed in preparation for October's sync-back.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>781H save action writes to local DB when offline <span class="dk">DISCO-49</span></li>
+          <li>updateHighestSeveritySymbol logic migrated to the FE <span class="dk">DISCO-50</span></li>
+          <li>RBAC permissions lock actions to roles <span class="dk">DISCO-18</span></li>
+          <li>FE database encryption-at-rest live (verified across sessions) <span class="dk">DISCO-19</span></li>
+          <li>Conflict/failure management screens wireframed (post-shift upload) <span class="dk">DISCO-64</span></li>
+        </ul>
+        <div class="sl">Security note</div>
+        <ul class="il"><li>Encryption-at-rest goes live this month — a major security milestone for ATO documentation</li></ul>
+        <div style="margin-top:8px;padding:6px 10px;background:#EDF4FD;border-radius:6px;font-size:10px;color:#1a3a5c"><strong>Audience check:</strong> At the September demo, expect 781H offline save, a second user signing an 781H ER with no network, an Offline-Mode indicator, and encryption live but transparent to the user.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- October + November -->
+  <div class="g2" style="margin-bottom:10px">
+    <div style="background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden">
+      <div style="background:#0d2a4a;padding:10px 14px;color:#fff">
+        <div style="font-weight:700;font-size:13px">October 2026 — Milestone 5 ★</div>
+        <div style="font-size:10px;opacity:.85;margin-top:2px">Working Prototype · Demo at close of DISCO Sprint 11 (20 Oct) · <strong style="color:#a8c4e0">TARGET PROTOTYPE</strong></div>
+      </div>
+      <div style="padding:12px 14px">
+        <div class="sl" style="margin-top:0">What stakeholders will see</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">The post-shift sync workflow is complete: queued offline actions upload to the server in order on reconnect, conflicts are managed, and every action is captured in an audit table. This is the completion of the <strong>working prototype</strong> — all critical offline workflows are functional, tested, and demonstrable to senior leadership end-to-end.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>Post-shift sync implemented end-to-end <span class="dk">DISCO-61</span></li>
+          <li>Conflict management logic; audit table for edit/create/close/defer <span class="dk">DISCO-60 / 62</span></li>
+          <li>New data-validation rules to prevent errors on re-connect <span class="dk">DISCO-55</span></li>
+          <li>Prototype hardening: E2E, performance, SBOM, FIPS encryption verified <span class="offb">off-board</span></li>
+        </ul>
+        <div style="margin-top:8px;padding:8px 12px;background:#f0f4f9;border:1px solid #0d2a4a;border-radius:6px">
+          <div style="font-size:11px;font-weight:700;color:#0d2a4a;margin-bottom:4px">★ Working Prototype Demo</div>
+          <div style="font-size:11px;color:#3a3a38;line-height:1.5">Senior-leadership demonstration of the complete Tier 1 offline workflow: authenticate offline via CAC → pre-shift sync → go disconnected → perform 781H and pre-synced form actions → reconnect → data uploads to server. The primary program milestone for IT Governance and executive stakeholders.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:10px;border:1px solid #d3d1c7;overflow:hidden">
+      <div style="background:#534AB7;padding:10px 14px;color:#fff">
+        <div style="font-weight:700;font-size:13px">November 2026 — Milestone 6</div>
+        <div style="font-size:10px;opacity:.85;margin-top:2px">781A Core Offline Actions · Demo at close of DISCO Sprint 13 (17 Nov)</div>
+      </div>
+      <div style="padding:12px 14px">
+        <div class="sl" style="margin-top:0">What stakeholders will see</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">Following the October prototype, the team extends offline capability to the 781A — the most complex and most frequently used form. Maintainers create, close, and create-and-close discrepancies offline; add and close WCEs; edit, defer, mark duplicate, and add notes — all queued and synced on reconnect. Manual JCN generation works without a network connection, and the Upload Failure Report is designed for December.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>Manual JCNs on the 781A; WCE off a manual JCN <span class="dk">DISCO-56 / 57</span></li>
+          <li>781A Create · Close · Create &amp; Close (save + XMIT) <span class="dk">DISCO-36 / 37 / 38</span></li>
+          <li>781A WCE, edit, mark-duplicate, defer, cancel, notes <span class="dk">DISCO-39…48</span></li>
+          <li>781K scheduling XMIT; clear pre-synced suspenses <span class="dk">DISCO-51 / 52</span></li>
+          <li>Upload Failure Report UI/UX design completed <span class="offb">off-board</span></li>
+        </ul>
+        <div style="margin-top:8px;padding:6px 10px;background:#EDF4FD;border-radius:6px;font-size:10px;color:#1a3a5c"><strong>Audience check:</strong> At the November demo, expect offline 781A create and close end-to-end with sync-back verified, and manual JCN generation shown without network.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- December full width -->
+  <div class="card" style="border-top:3px solid #993C1D">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div>
+        <div style="font-size:14px;font-weight:700;color:#993C1D">December 2026 — Milestones 7 &amp; 8</div>
+        <div style="font-size:11px;color:#5f5e5a;margin-top:2px">Upload Failure Tracking + RSO Deployment · M7 demo close of DISCO Sprint 15 (15 Dec) · M8 RSO by close of DISCO Sprint 16 (31 Dec)</div>
+      </div>
+      <span class="lbl" style="background:#993C1D;color:#fff">RSO DEPLOYMENT</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl" style="margin-top:0">Milestone 7 — Upload Failure Tracking</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">When a device reconnects and attempts to upload queued changes, some uploads may fail — through conflicts, interruptions, or validation rejection. This milestone detects, records, and surfaces those failures. The Conflict/Failed Management screen and the "Unsynced: Failed to Process" status chip give maintainers and supervisors visibility into what failed and what action is needed, closing a critical accountability gap before production.</div>
+        <div class="sl">Key deliverables · Jira-linked</div>
+        <ul class="il">
+          <li>Conflict/Failed Management screen on the FE <span class="dk">DISCO-58</span></li>
+          <li>Sync error handling <span class="dk">DISCO-59</span></li>
+          <li>"Unsynced: Failed to Process" status chip on the 781A <span class="dk">DISCO-53</span></li>
+          <li>Upload Failure Report — review UI for failed uploads &amp; follow-up <span class="offb">off-board · not yet ticketed</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sl" style="margin-top:0">Milestone 8 — RSO Deployment</div>
+        <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-bottom:8px">The application — with all capability delivered through Milestone 7 — is deployed to the RSO environment by 31 December. At this point the system supports offline CAC authentication, pre-shift data sync, offline form actions across 781/781F/781H/781A, manual JCN generation, queued sync-back, and upload-failure reporting.</div>
+        <div class="sl">Key deliverable</div>
+        <ul class="il"><li>Application deployed to RSO with full M1–M7 capability verified in production <span class="offb">off-board</span></li></ul>
+        <div class="sl">Decisions required from stakeholders</div>
+        <ul class="il">
+          <li><strong>IT Governance / ATO:</strong> ATO must be granted before RSO deployment. Confirm ATO timeline tracks to 31 Dec.</li>
+          <li><strong>Security:</strong> Final STIG checklist review, SSP sign-off, and deployment authorization required</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:8px 12px;background:#fef9f0;border:1px solid #993C1D;border-radius:6px;font-size:11px;color:#3a3a38;line-height:1.5">
+      <strong>What success looks like on 31 December:</strong> A maintainer at a remote site without network connectivity can authenticate with their CAC, download the data for their aircraft before going offline, perform 781, 781F, 781H, and 781A maintenance actions during their shift, reconnect at shift end, and have all their work automatically uploaded — with any failures clearly reported for follow-up. The system is deployed, authorized, and in use.
+    </div>
+  </div>
+
+  <div class="sl">Continuous tracks — every DISCO Sprint (tracked off the DISCO board)</div>
+  <div class="g3">
+    <div class="card" style="padding:12px;border-top:3px solid #BA7517">
+      <div style="font-size:11px;font-weight:700;color:#854F0B;margin-bottom:5px">UI/UX Design Support (Jun–Nov)</div>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.5">Design runs alongside development. Key deliverables include the Prepare Binder modal, offline/online status indicators, the unsynced-changes count, the post-shift upload flow, and the Upload Failure Report. Design for the following increment is completed one DISCO Sprint ahead. Tracked outside DISCO except where a design is itself a ticket (e.g. DISCO-64).</div>
+    </div>
+    <div class="card" style="padding:12px;border-top:3px solid #5f5e5a">
+      <div style="font-size:11px;font-weight:700;color:#3a3a38;margin-bottom:5px">Test Documentation &amp; Automation (Jun–Dec)</div>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.5">Test cases are documented and implemented incrementally each DISCO Sprint; coverage expands as features are added. By December the suite covers the full offline workflow including edge cases: interruptions mid-sync, large queue volumes, session changes, and upload failures. Tracked outside the DISCO board.</div>
+    </div>
+    <div class="card" style="padding:12px;border-top:3px solid #A32D2D">
+      <div style="font-size:11px;font-weight:700;color:#A32D2D;margin-bottom:5px">ATO &amp; Security Documentation (Jun–Dec)</div>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.5">ATO work runs in parallel throughout. Key gates: ISSO/ISSM assigned in June, eMASS registration initiated, SSP drafted incrementally, and STIG checklists (App Security &amp; Dev STIG, Chromium STIG) initiated by October. ATO must be complete before RSO deployment. Tracked in eMASS, not DISCO.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════ TAB 1 · SPRINT PLAN ══════════════════════ -->
+<section id="t1" class="pnl">
+  <div class="note" style="margin-bottom:6px">
+    The program executes on a fixed two-week cadence; the DISCO board does not. The Jira export returned <strong>no Sprint field</strong> for this project, so the sprint boundaries below — and the allocation of specific epics to specific sprints — are a planning overlay derived from dependency order, current Jira status, and the existing M1–M8 monthly structure. Think of it this way: Jira tells us <em>what</em> and <em>in what order</em>; this tab decides <em>which fortnight</em>. Sprint numbering begins at <strong>DISCO Sprint 3 (17–30 Jun)</strong> and runs to <strong>DISCO Sprint 16 (16–29 Dec)</strong>; a demonstrable milestone is presented to leadership at the close of every month, landing on the second sprint of that month.
+  </div>
+  <div class="warn" style="margin-bottom:12px"><strong>Configuration recommendation:</strong> add the Jira <em>Sprint</em> field and the <em>Priority</em> field to DISCO. Until both exist, this overlay must be maintained by hand and the board cannot surface a true "not-yet-started" queue — every issue currently reads as "Lowest." Re-run the backlog export once Sprints are configured and this tab can be generated directly from Jira.</div>
+
+  <!-- DISCO SPRINT CALENDAR -->
+  <div class="sl">DISCO Sprint calendar — S3 through S16</div>
+  <div class="card" style="padding:12px;overflow-x:auto">
+    <table>
+      <tr><th style="width:90px">DISCO Sprint</th><th style="width:120px">Dates</th><th style="width:150px">Milestone / Demo</th><th>Primary epic focus &amp; representative issues</th></tr>
+      <tr><td><strong>S3</strong> <span class="lbl la">current</span></td><td>17–30 Jun</td><td>M1 demo · 30 Jun</td><td>Close research (DISCO-3): DB selection &amp; encryption peer-review (DISCO-11/12), hydration/schema/migration (DISCO-63/65/66); CI/CD Electron build (DISCO-23); FIPS-library spike (DISCO-71)</td></tr>
+      <tr><td><strong>S4</strong></td><td>1–14 Jul</td><td>↳ M2 (build)</td><td>Electron Integration (DISCO-13): scaffolding, security/IPC, offline auth (DISCO-20/21/22); FE DB shared location (DISCO-17)</td></tr>
+      <tr><td><strong>S5</strong></td><td>15–28 Jul</td><td>M2 demo · 28 Jul</td><td>Local DB tables &amp; init, activeUser endpoint (DISCO-26/27/25/67); CI/CD code signing (DISCO-24)</td></tr>
+      <tr><td><strong>S6</strong></td><td>29 Jul–11 Aug</td><td>↳ M3 (build)</td><td>Pre-Shift Sync (DISCO-5): Prepare Binder modals, refresh endpoint, sync (DISCO-28/68/29/30); queuing FE/BE (DISCO-31/32)</td></tr>
+      <tr><td><strong>S7</strong></td><td>12–25 Aug</td><td>M3 demo · 25 Aug</td><td>Core form saves (DISCO-7): Info Notes / 781F / 781 (DISCO-33/34/35); validation engine (DISCO-54)</td></tr>
+      <tr><td><strong>S8</strong></td><td>26 Aug–8 Sep</td><td>↳ M4 (build)</td><td>781H save &amp; highest-symbol (DISCO-49/50); RBAC (DISCO-18)</td></tr>
+      <tr><td><strong>S9</strong></td><td>9–22 Sep</td><td>M4 demo · 22 Sep</td><td>Encryption-at-rest live (DISCO-19); conflict/failure wireframes (DISCO-64)</td></tr>
+      <tr><td><strong>S10</strong></td><td>23 Sep–6 Oct</td><td>↳ M5 (build)</td><td>Post-Shift Sync (DISCO-6): post-shift sync, conflict logic, audit table (DISCO-61/60/62)</td></tr>
+      <tr><td><strong>S11</strong> <span class="lbl lb">★ prototype</span></td><td>7–20 Oct</td><td>M5 demo · 20 Oct ★</td><td>Re-connect validation rules (DISCO-55); prototype hardening, performance, security review, SBOM (off-board)</td></tr>
+      <tr><td><strong>S12</strong></td><td>21 Oct–3 Nov</td><td>↳ M6 (build)</td><td>781A (DISCO-7): manual JCN, create/close/create&amp;close (DISCO-56/57/36/37/38)</td></tr>
+      <tr><td><strong>S13</strong></td><td>4–17 Nov</td><td>M6 demo · 17 Nov</td><td>781A WCE/edit/defer/notes, 781K, suspenses (DISCO-39…48/51/52); Upload Failure Report design (off-board)</td></tr>
+      <tr><td><strong>S14</strong></td><td>18 Nov–1 Dec</td><td>↳ M7 (build)</td><td>Upload-failure tracking (DISCO-6): conflict/failed mgmt screen, sync error handling (DISCO-58/59)</td></tr>
+      <tr><td><strong>S15</strong></td><td>2–15 Dec</td><td>M7 demo · 15 Dec</td><td>Failed-to-process chip (DISCO-53); Upload Failure Report UI (off-board); ATO close-out</td></tr>
+      <tr><td><strong>S16</strong></td><td>16–29 Dec</td><td>M8 · RSO by 31 Dec</td><td>RSO production deployment, runbook, final STIG / SSP sign-off (off-board)</td></tr>
+    </table>
+    <div style="font-size:10px;color:#5f5e5a;margin-top:4px">"↳" marks the first sprint of a month (build sprint); the milestone demo lands at the close of the month's second sprint. December carries three sprints (M7 demo at S15, RSO at S16).</div>
+  </div>
+
+  <!-- SPRINT × EPIC TIMELINE -->
+  <div class="sl">Epic activity across DISCO Sprints</div>
+  <div class="card" style="padding:12px;overflow-x:auto">
+    <svg width="100%" viewBox="0 0 1080 280" style="min-width:760px;display:block">
+      <!-- alternating column stripes -->
+      <rect x="216" y="44" width="66" height="196" fill="#f8fafd"/>
+      <rect x="348" y="44" width="66" height="196" fill="#f8fafd"/>
+      <rect x="480" y="44" width="66" height="196" fill="#f8fafd"/>
+      <rect x="612" y="44" width="66" height="196" fill="#f8fafd"/>
+      <rect x="744" y="44" width="66" height="196" fill="#f8fafd"/>
+      <rect x="876" y="44" width="66" height="196" fill="#f8fafd"/>
+      <rect x="1008" y="44" width="66" height="196" fill="#f8fafd"/>
+      <!-- header -->
+      <rect x="0" y="0" width="1080" height="44" fill="#0d2a4a"/>
+      <text style="font-size:10px;font-weight:700;fill:#a8c4e0" x="8" y="22" dominant-baseline="central">EPIC</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="183" y="14" text-anchor="middle">S3</text><text style="font-size:7px;fill:#a8c4e0" x="183" y="30" text-anchor="middle">6/17–30</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="249" y="14" text-anchor="middle">S4</text><text style="font-size:7px;fill:#a8c4e0" x="249" y="30" text-anchor="middle">7/1–14</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="315" y="14" text-anchor="middle">S5</text><text style="font-size:7px;fill:#a8c4e0" x="315" y="30" text-anchor="middle">7/15–28</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="381" y="14" text-anchor="middle">S6</text><text style="font-size:7px;fill:#a8c4e0" x="381" y="30" text-anchor="middle">7/29–8/11</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="447" y="14" text-anchor="middle">S7</text><text style="font-size:7px;fill:#a8c4e0" x="447" y="30" text-anchor="middle">8/12–25</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="513" y="14" text-anchor="middle">S8</text><text style="font-size:7px;fill:#a8c4e0" x="513" y="30" text-anchor="middle">8/26–9/8</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="579" y="14" text-anchor="middle">S9</text><text style="font-size:7px;fill:#a8c4e0" x="579" y="30" text-anchor="middle">9/9–22</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="645" y="14" text-anchor="middle">S10</text><text style="font-size:7px;fill:#a8c4e0" x="645" y="30" text-anchor="middle">9/23–10/6</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="711" y="14" text-anchor="middle">S11★</text><text style="font-size:7px;fill:#a8c4e0" x="711" y="30" text-anchor="middle">10/7–20</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="777" y="14" text-anchor="middle">S12</text><text style="font-size:7px;fill:#a8c4e0" x="777" y="30" text-anchor="middle">10/21–11/3</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="843" y="14" text-anchor="middle">S13</text><text style="font-size:7px;fill:#a8c4e0" x="843" y="30" text-anchor="middle">11/4–17</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="909" y="14" text-anchor="middle">S14</text><text style="font-size:7px;fill:#a8c4e0" x="909" y="30" text-anchor="middle">11/18–12/1</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="975" y="14" text-anchor="middle">S15</text><text style="font-size:7px;fill:#a8c4e0" x="975" y="30" text-anchor="middle">12/2–15</text>
+      <text style="font-size:9px;font-weight:700;fill:#fff" x="1041" y="14" text-anchor="middle">S16</text><text style="font-size:7px;fill:#a8c4e0" x="1041" y="30" text-anchor="middle">12/16–29</text>
+      <!-- row separators -->
+      <line x1="0" y1="72" x2="1080" y2="72" stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="100" x2="1080" y2="100" stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="128" x2="1080" y2="128" stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="156" x2="1080" y2="156" stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="184" x2="1080" y2="184" stroke="#eeede8" stroke-width=".5"/>
+      <line x1="0" y1="212" x2="1080" y2="212" stroke="#eeede8" stroke-width=".5"/>
+      <!-- milestone vertical lines + bottom labels -->
+      <line x1="216" y1="44" x2="216" y2="240" stroke="#185FA5" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#185FA5" x="216" y="252" text-anchor="middle">M1</text>
+      <line x1="348" y1="44" x2="348" y2="240" stroke="#1a6e9e" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#1a6e9e" x="348" y="252" text-anchor="middle">M2</text>
+      <line x1="480" y1="44" x2="480" y2="240" stroke="#3B6D11" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#3B6D11" x="480" y="252" text-anchor="middle">M3</text>
+      <line x1="612" y1="44" x2="612" y2="240" stroke="#854F0B" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#854F0B" x="612" y="252" text-anchor="middle">M4</text>
+      <line x1="744" y1="44" x2="744" y2="240" stroke="#0d2a4a" stroke-width="1" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#0d2a4a" x="744" y="252" text-anchor="middle">M5 ★</text>
+      <line x1="876" y1="44" x2="876" y2="240" stroke="#534AB7" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#534AB7" x="876" y="252" text-anchor="middle">M6</text>
+      <line x1="1008" y1="44" x2="1008" y2="240" stroke="#993C1D" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#993C1D" x="1008" y="252" text-anchor="middle">M7</text>
+      <line x1="1074" y1="44" x2="1074" y2="240" stroke="#993C1D" stroke-width=".7" stroke-dasharray="2 2"/><text style="font-size:8px;font-weight:700;fill:#993C1D" x="1062" y="252" text-anchor="middle">M8</text>
+      <!-- epic row labels -->
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="60" dominant-baseline="central">DISCO-3</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="68" dominant-baseline="central">Research</text>
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="88" dominant-baseline="central">DISCO-13</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="96" dominant-baseline="central">Electron</text>
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="116" dominant-baseline="central">DISCO-8</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="124" dominant-baseline="central">Auth/Enc</text>
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="144" dominant-baseline="central">DISCO-5</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="152" dominant-baseline="central">Pre-Shift</text>
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="172" dominant-baseline="central">DISCO-7</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="180" dominant-baseline="central">Offline Acts</text>
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="200" dominant-baseline="central">DISCO-6</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="208" dominant-baseline="central">Post-Shift</text>
+      <text style="font-size:9px;fill:#1a1a18;font-weight:700" x="8" y="228" dominant-baseline="central">ATO</text><text style="font-size:8px;fill:#5f5e5a" x="8" y="236" dominant-baseline="central">off-board</text>
+      <!-- epic bars -->
+      <rect x="152" y="51" width="62" height="18" rx="4" fill="#185FA5"/><text style="font-size:8px;fill:#fff;font-weight:600" x="183" y="60" text-anchor="middle" dominant-baseline="central">close-out</text>
+      <rect x="152" y="79" width="194" height="18" rx="4" fill="#1a6e9e"/><text style="font-size:8px;fill:#fff;font-weight:600" x="249" y="88" text-anchor="middle" dominant-baseline="central">shell · IPC · offline auth · CI/CD</text>
+      <rect x="218" y="107" width="392" height="18" rx="4" fill="#534AB7"/><text style="font-size:8px;fill:#fff;font-weight:600" x="414" y="116" text-anchor="middle" dominant-baseline="central">FE DB · RBAC · encryption-at-rest live (S9)</text>
+      <rect x="284" y="135" width="260" height="18" rx="4" fill="#3B6D11"/><text style="font-size:8px;fill:#fff;font-weight:600" x="414" y="144" text-anchor="middle" dominant-baseline="central">tables · prep binder · sync</text>
+      <rect x="350" y="163" width="524" height="18" rx="4" fill="#854F0B"/><text style="font-size:8px;fill:#fff;font-weight:600" x="612" y="172" text-anchor="middle" dominant-baseline="central">queuing · core saves · 781H · 781A actions · validation</text>
+      <rect x="548" y="191" width="458" height="18" rx="4" fill="#993C1D"/><text style="font-size:8px;fill:#fff;font-weight:600" x="777" y="200" text-anchor="middle" dominant-baseline="central">wireframe · post-shift sync · conflict · failure tracking</text>
+      <rect x="152" y="219" width="920" height="18" rx="4" fill="none" stroke="#A32D2D" stroke-width="1" stroke-dasharray="5 3"/><text style="font-size:8px;fill:#A32D2D" x="612" y="228" text-anchor="middle" dominant-baseline="central">eMASS · SSP · STIG · ATO granted before RSO</text>
+      <!-- TODAY -->
+      <line x1="188" y1="44" x2="188" y2="240" stroke="#A32D2D" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <rect x="170" y="44" width="36" height="12" rx="2" fill="#A32D2D"/><text style="font-size:7px;font-weight:700;fill:#fff" x="188" y="50" text-anchor="middle" dominant-baseline="central">TODAY</text>
+    </svg>
+    <div style="font-size:10px;color:#5f5e5a;margin-top:4px">Bars show each epic's planned active window across the DISCO Sprints; the FIPS items (DISCO-69/70/71) are emerging scope not yet folded into an epic — fold them into DISCO-8 or DISCO-13. DISCO-7 spans the widest window (S6–S13) and is the largest epic at 27 child issues.</div>
+  </div>
+
+  <!-- EPIC STATUS (from Jira) -->
+  <div class="sl">Epic status — DISCO board snapshot (24 Jun 2026)</div>
+  <div class="g3" style="margin-bottom:6px">
+    <div class="epic-card" style="border-left-color:#185FA5">
+      <div class="ec-top"><div class="ec-name">DISCO-3 · Prototyping &amp; Research</div><span class="lbl lg">50% done</span></div>
+      <div style="font-size:10px;color:#5f5e5a;margin-bottom:5px">8 children · 4 Done · 2 Peer Review · 2 In Progress</div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:50%"></div></div>
+      <div style="font-size:10px;color:#3a3a38;margin-top:4px">Most advanced epic. Research is landing now; the two peer-review spikes (DISCO-11/12) gate July.</div>
+    </div>
+    <div class="epic-card" style="border-left-color:#1a6e9e">
+      <div class="ec-top"><div class="ec-name">DISCO-13 · Electron Integration</div><span class="lbl la">0% done</span></div>
+      <div style="font-size:10px;color:#5f5e5a;margin-bottom:5px">5 children · 1 In Progress · 4 To Do · <strong>epic unassigned</strong></div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:8%;background:#1a6e9e"></div></div>
+      <div style="font-size:10px;color:#3a3a38;margin-top:4px">Drives the M1→M2 desktop runtime. DISCO-23 (Keegan) is the only active item; scaffolding/IPC/auth unowned.</div>
+    </div>
+    <div class="epic-card" style="border-left-color:#534AB7">
+      <div class="ec-top"><div class="ec-name">DISCO-8 · Authentication &amp; Encryption</div><span class="lbl lr">0% done</span></div>
+      <div style="font-size:10px;color:#5f5e5a;margin-bottom:5px">3 children · 3 To Do · <strong>epic unassigned</strong></div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:2%;background:#534AB7"></div></div>
+      <div style="font-size:10px;color:#3a3a38;margin-top:4px">Security-load-bearing and entirely unstarted. Encryption-at-rest (DISCO-19) is the September gate.</div>
+    </div>
+    <div class="epic-card" style="border-left-color:#3B6D11">
+      <div class="ec-top"><div class="ec-name">DISCO-5 · Pre-Shift Sync Workflow</div><span class="lbl la">10% done</span></div>
+      <div style="font-size:10px;color:#5f5e5a;margin-bottom:5px">10 children · 1 Done · 1 In Progress · 8 To Do</div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:10%;background:#3B6D11"></div></div>
+      <div style="font-size:10px;color:#3a3a38;margin-top:4px">Hydration research (DISCO-63) active; tables, endpoints, and modals form the bulk of July–August.</div>
+    </div>
+    <div class="epic-card" style="border-left-color:#854F0B">
+      <div class="ec-top"><div class="ec-name">DISCO-7 · Disconnected Maintenance Actions</div><span class="lbl lr">0% done</span></div>
+      <div style="font-size:10px;color:#5f5e5a;margin-bottom:5px">27 children · 27 To Do · <strong>largest epic</strong></div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:1%;background:#854F0B"></div></div>
+      <div style="font-size:10px;color:#3a3a38;margin-top:4px">Spans S6–S13. Core form saves in August; the full 781A action set is November's M6 demo.</div>
+    </div>
+    <div class="epic-card" style="border-left-color:#993C1D">
+      <div class="ec-top"><div class="ec-name">DISCO-6 · Post-Shift Sync Workflow</div><span class="lbl la">0% done</span></div>
+      <div style="font-size:10px;color:#5f5e5a;margin-bottom:5px">6 children · 1 In Progress · 5 To Do</div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:6%;background:#993C1D"></div></div>
+      <div style="font-size:10px;color:#3a3a38;margin-top:4px">Wireframes (DISCO-64) active. Drives the M5 prototype sync-back and the M7 failure tracking.</div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:4px">Three FIPS issues — <strong>DISCO-69 (FIPS compliance to local DB), DISCO-70 (DB storage-location config), DISCO-71 (FIPS-compliant open-source DB library spike)</strong> — carry <em>no epic link</em>. They are the most recent batch added (23 Jun) and represent emerging scope. Recommendation: fold them under DISCO-8 (Authentication &amp; Encryption) so the encryption and FIPS work share one owner.</div>
+
+  <!-- MILESTONE PROGRESS (checklist-driven) -->
+  <div class="sl">Milestone completion — driven by the Team Checklists tab</div>
+  <div class="g4">
+    <div class="mc m1"><div class="mc-hdr">M1 · June<span>Foundation · S3</span></div><div class="mc-body"><div id="prog-lbl-1" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-1" style="width:0%"></div></div></div></div>
+    <div class="mc m2"><div class="mc-hdr">M2 · July<span>Offline Auth &amp; DB · S4–S5</span></div><div class="mc-body"><div id="prog-lbl-2" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-2" style="width:0%;background:#1a6e9e"></div></div></div></div>
+    <div class="mc m3"><div class="mc-hdr">M3 · August<span>Pre-Shift &amp; Saves · S6–S7</span></div><div class="mc-body"><div id="prog-lbl-3" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-3" style="width:0%;background:#3B6D11"></div></div></div></div>
+    <div class="mc m4"><div class="mc-hdr">M4 · September<span>781H &amp; Encryption · S8–S9</span></div><div class="mc-body"><div id="prog-lbl-4" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-4" style="width:0%;background:#854F0B"></div></div></div></div>
+    <div class="mc m5"><div class="mc-hdr">M5 ★ · October<span>Prototype · S10–S11</span></div><div class="mc-body"><div id="prog-lbl-5" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-5" style="width:0%;background:#0d2a4a"></div></div></div></div>
+    <div class="mc m6"><div class="mc-hdr">M6 · November<span>781A Actions · S12–S13</span></div><div class="mc-body"><div id="prog-lbl-6" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-6" style="width:0%;background:#534AB7"></div></div></div></div>
+    <div class="mc m7"><div class="mc-hdr">M7+M8 · December<span>Failure Tracking + RSO · S14–S16</span></div><div class="mc-body"><div id="prog-lbl-7" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-7" style="width:0%;background:#993C1D"></div></div></div></div>
+  </div>
+
+  <!-- RISK REGISTER -->
+  <div class="sl">Risk register</div>
+  <table>
+    <tr><th>Risk</th><th style="width:90px">Window</th><th style="width:70px">Severity</th><th>Mitigation</th><th style="width:120px">Owner</th></tr>
+    <tr><td>ATO lead time delays installation on government hardware</td><td>All</td><td><span class="lbl lr">HIGH</span></td><td>Begin eMASS registration in June; prototype runs on dev machines until ATO granted</td><td>ISSO / PM</td></tr>
+    <tr><td>Gating research not closed before the M1 demo — DB selection (DISCO-11) &amp; encryption (DISCO-12) in Peer Review; hydration/schema/migration (DISCO-63/65/66) In Progress</td><td>S3</td><td><span class="lbl lr">HIGH</span></td><td>Merge the two peer-review spikes this week; close the three in-progress spikes by 30 Jun</td><td>Raj Etta / Datta Sharma</td></tr>
+    <tr><td>50-issue To Do backlog is 100% unassigned; epics DISCO-13 / 8 / 7 have no owner driving intake</td><td>S3–S4</td><td><span class="lbl lr">HIGH</span></td><td>Assign epic owners during DISCO Sprint 3; without owners, July (M2) work cannot start</td><td>Team Lead / PM</td></tr>
+    <tr><td>Native module (node-pcsclite) fails to compile for the target Electron ABI</td><td>S4</td><td><span class="lbl lr">HIGH</span></td><td>Spike native compilation now as part of the Electron shell; do not defer to August</td><td>Lead Dev (Keegan)</td></tr>
+    <tr><td>Single-contributor concentration — Raj Etta holds 3 of 7 active items, all on the DB critical path</td><td>S3–S5</td><td><span class="lbl la">MED</span></td><td>Redistribute or pair on DISCO-65 / 66 before schema work begins</td><td>Team Lead</td></tr>
+    <tr><td>No priority signal — every DISCO issue is set to "Lowest"; no forcing function for triage</td><td>All</td><td><span class="lbl la">MED</span></td><td>Adopt the Jira priority field; flag demo-blocking items as Highest</td><td>Team Lead</td></tr>
+    <tr><td>Batch sync-back performance under a large queue (300+ entries)</td><td>S10–S11</td><td><span class="lbl la">MED</span></td><td>Load-test a 300-entry queue before the prototype freeze</td><td>Backend Lead</td></tr>
+    <tr><td>CAC middleware version variance across dev hardware</td><td>S6–S9</td><td><span class="lbl la">MED</span></td><td>Inventory hardware in June; test on at least two card-reader variants</td><td>Lead Dev</td></tr>
+    <tr><td>Chromium CVE released during the build window</td><td>All</td><td><span class="lbl la">MED</span></td><td>Subscribe to Electron security advisories; enforce a 15-day critical-patch SLA</td><td>DevOps</td></tr>
+  </table>
+  <div style="text-align:right;margin-top:4px"><a href="https://fiveforty.atlassian.net/jira/software/projects/DISCO/boards/827" style="font-size:10px;color:#185FA5">📋 View DISCO Board →</a></div>
+</section>
+
+<!-- ══════════════════════ TAB 2 · MONTHLY OBJECTIVES ══════════════════════ -->
+<section id="t2" class="pnl">
+  <div class="warn">Every DISCO Sprint produces a working increment; every month produces a demonstrable milestone demo at month close. If a milestone is at risk, escalate mid-month — not at the demo.</div>
+
+  <div class="legend-box">
+    <strong style="font-size:10px;color:#0d2a4a">Legend:</strong>
+    <span class="legend-item"><span class="dk">DISCO-XX</span> Linked to a Jira issue on the DISCO board</span>
+    <span class="legend-item"><span class="offb">off-board</span> Tracked outside DISCO (ATO/eMASS, UX, test docs)</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:#f1efe8;border:1px solid #ccc"></span> Out of scope / manual process</span>
+  </div>
+
+  <!-- JUNE -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#185FA5">June 2026 — Milestone 1: Foundation</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 3</span> 17–30 Jun · Close research; Electron shell building; FIPS-compliant local DB selected.</div></div>
+      <span class="lbl lb">In progress now</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">Prototyping &amp; Research (DISCO-3)</div>
+        <ul class="il">
+          <li>Online Electron prototype of the Digital Binder built &amp; demonstrated <span class="dk">DISCO-1 ✓</span></li>
+          <li>Key Design Decisions doc for the Electron app <span class="dk">DISCO-14 ✓</span></li>
+          <li>Data-sync process researched and documented <span class="dk">DISCO-15 ✓</span></li>
+          <li>CAC reader access from within Electron researched and documented <span class="dk">DISCO-16 ✓</span></li>
+          <li>Local DB selection &amp; schema — close out of Peer Review <span class="dk">DISCO-11</span></li>
+          <li>Encryption-at-rest in a disconnected state — close out of Peer Review <span class="dk">DISCO-12</span></li>
+          <li>Local database hydration process researched <span class="dk">DISCO-63</span></li>
+          <li>Local DB tables &amp; schemas researched <span class="dk">DISCO-65</span></li>
+          <li>Migration strategy researched &amp; drafted <span class="dk">DISCO-66</span></li>
+        </ul>
+        <div class="sl">FIPS-Compliant Local Database — emerging scope</div>
+        <ul class="il">
+          <li>Research &amp; prototype a FIPS-compliant open-source DB library <span class="dk">DISCO-71</span></li>
+          <li>Introduce FIPS compliance to the local DB <span class="dk">DISCO-69</span></li>
+          <li>Define DB storage-location configuration <span class="dk">DISCO-70</span></li>
+        </ul>
+        <div class="sl">Electron Integration (DISCO-13)</div>
+        <ul class="il">
+          <li>CI/CD pipeline expanded — Electron build &amp; unsigned artifact push <span class="dk">DISCO-23</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sl">Demo deliverable</div>
+        <div class="card" style="background:#f4f8fe;border-color:#185FA5">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">Demo: Electron on Windows + research read-out</div>
+          <ul class="il">
+            <li>Electron app launches on a developer Windows PC</li>
+            <li>Angular app fully functional inside the Electron renderer</li>
+            <li>CI/CD pipeline produces an installer artifact <span class="dk">DISCO-23</span></li>
+            <li>Read-out: CAC access, local-DB selection, FIPS encryption approach</li>
+          </ul>
+          <div class="milestone-badge" style="margin-top:10px">Foundation Ready ◆</div>
+        </div>
+        <div class="sl">ATO track — start now <span class="offb">off-board</span></div>
+        <ul class="il">
+          <li>Assign ISSO and ISSM</li>
+          <li>Initiate eMASS system registration</li>
+          <li>Document system boundary (Electron client + GCP backend + IMDS)</li>
+          <li>Begin SSP outline: system description, data flows, inherited FedRAMP controls</li>
+          <li>Draft architecture diagrams (IPC bridge + security boundaries) for Delta Assessment / eMASS</li>
+        </ul>
+        <div class="sl">Success criteria</div>
+        <ul class="il">
+          <li>All five gating research items resolved (DISCO-11/12/63/65/66)</li>
+          <li>CI/CD produces a runnable installer on a developer Windows machine</li>
+          <li>node-pcsclite native compilation succeeds on the target Electron ABI</li>
+          <li>FIPS-compliant local-DB approach decided and documented</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- JULY -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#1a6e9e">July 2026 — Milestone 2: Offline Auth &amp; Local Database</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 4</span> 1–14 Jul · <span class="sprint-tag">DISCO Sprint 5</span> 15–28 Jul · Offline CAC login; local DB created &amp; structured; signed installer.</div></div>
+      <span class="lbl lb">Requires M1</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">Electron Integration (DISCO-13)</div>
+        <ul class="il">
+          <li>Scaffolding &amp; build infrastructure <span class="dk">DISCO-20</span></li>
+          <li>Security boundaries &amp; IPC — contextIsolation, nodeIntegration:false, sandbox <span class="dk">DISCO-21</span></li>
+          <li>Implement single-user authentication while offline <span class="dk">DISCO-22</span></li>
+          <li>CI/CD pipeline expanded — DoD code signing <span class="dk">DISCO-24</span></li>
+        </ul>
+        <div class="sl">Authentication &amp; Encryption (DISCO-8)</div>
+        <ul class="il">
+          <li>Create the front-end database in a shared location <span class="dk">DISCO-17</span></li>
+        </ul>
+        <div class="sl">Pre-Shift Sync foundations (DISCO-5)</div>
+        <ul class="il">
+          <li>Create all local DB tables for disconnected storage/retrieval <span class="dk">DISCO-26</span></li>
+          <li>Implement the local DB initialization workflow <span class="dk">DISCO-27</span></li>
+          <li>Implement the activeUser endpoint (users + metadata) <span class="dk">DISCO-25</span></li>
+          <li>Research &amp; prototype how to source activeUser data <span class="dk">DISCO-67</span></li>
+          <li>Crew-chief pre-shift tail-selection design <span class="dk">DISCO-10 ✓</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sl">Demo deliverable</div>
+        <div class="card" style="background:#eef6fb;border-color:#1a6e9e">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">Demo: Offline CAC login + local DB</div>
+          <ul class="il">
+            <li>Insert CAC → authenticate into the desktop app with network disabled <span class="dk">DISCO-22</span></li>
+            <li>Show the local DB schema in its shared location <span class="dk">DISCO-17/26</span></li>
+            <li>CI/CD auto-produces a DoD-signed installer <span class="dk">DISCO-24</span></li>
+          </ul>
+          <div class="milestone-badge" style="background:#1a6e9e">Auth &amp; DB Ready ◆</div>
+        </div>
+        <div class="sl">ATO track <span class="offb">off-board</span></div>
+        <ul class="il">
+          <li>eMASS registration progressing; data flows updated for offline auth</li>
+          <li>CI/CD output format + Artifact Registry / MECM location confirmed</li>
+        </ul>
+        <div class="sl">Success criteria</div>
+        <ul class="il">
+          <li>Maintainer logs in while disconnected; EDIPI resolved via the IPC bridge</li>
+          <li>Local DB tables created and initialized without error</li>
+          <li>Signed installer produced by the pipeline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUGUST -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#3B6D11">August 2026 — Milestone 3: Pre-Shift Sync &amp; Core Form Saves</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 6</span> 29 Jul–11 Aug · <span class="sprint-tag">DISCO Sprint 7</span> 12–25 Aug · Prepare Binder downloads data; 781/Info Notes/781F save offline.</div></div>
+      <span class="lbl lb">Requires M2</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">Pre-Shift Sync Workflow (DISCO-5)</div>
+        <ul class="il">
+          <li>Build the Prepare Binder Selection Modal (FE) <span class="dk">DISCO-28</span></li>
+          <li>Build the Prepare Binder Progress Modal &amp; notifications (FE) <span class="dk">DISCO-68</span></li>
+          <li>Endpoint: take a tail list, refresh data, return to the FE <span class="dk">DISCO-29</span></li>
+          <li>Sync refreshed data to the appropriate local DB tables <span class="dk">DISCO-30</span></li>
+        </ul>
+        <div class="sl">Disconnected Maintenance Actions — queuing &amp; core saves (DISCO-7)</div>
+        <ul class="il">
+          <li>Queuing logic for saves &amp; XMITs in the FE application <span class="dk">DISCO-31</span></li>
+          <li>Queue processing logic for saves &amp; XMITs in the BE service <span class="dk">DISCO-32</span></li>
+          <li>Save action on the Info Notes page (online + offline) <span class="dk">DISCO-33</span></li>
+          <li>Save action on Form 781F (online + offline) <span class="dk">DISCO-34</span></li>
+          <li>Save action on Form 781 (online + offline) <span class="dk">DISCO-35</span></li>
+          <li>Data Validation Rules Engine on the FE — initial <span class="dk">DISCO-54</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sl">Demo deliverable</div>
+        <div class="card" style="background:#f0faf0;border-color:#3B6D11">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">Demo: Pre-shift sync + offline core saves</div>
+          <ul class="il">
+            <li>Prepare Binder: select a tail, download 781/Info Notes/781F <span class="dk">DISCO-28/29/30</span></li>
+            <li>Go offline, save changes to 781 / Info Notes / 781F from local storage <span class="dk">DISCO-33/34/35</span></li>
+            <li>Reconnect → online resync refreshes data</li>
+          </ul>
+          <div class="milestone-badge" style="background:#3B6D11">Pre-Shift Sync Ready ◆</div>
+        </div>
+        <div class="sl">Success criteria</div>
+        <ul class="il">
+          <li>Saves are captured to the local DB and queued in order while offline</li>
+          <li>Validation rules engine evaluates offline entries on the FE</li>
+          <li>Refreshed data appears in the correct local tables on reconnect</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEPTEMBER -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#854F0B">September 2026 — Milestone 4: 781H Offline &amp; Encryption Live</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 8</span> 26 Aug–8 Sep · <span class="sprint-tag">DISCO Sprint 9</span> 9–22 Sep · 781H offline; RBAC; encryption-at-rest goes live.</div></div>
+      <span class="lbl lb">Requires M3</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">Disconnected Maintenance Actions (DISCO-7)</div>
+        <ul class="il">
+          <li>Save action on Form 781H (online + offline) <span class="dk">DISCO-49</span></li>
+          <li>Migrate updateHighestSeveritySymbol logic to the FE <span class="dk">DISCO-50</span></li>
+        </ul>
+        <div class="sl">Authentication &amp; Encryption (DISCO-8)</div>
+        <ul class="il">
+          <li>Implement RBAC permissions to lock actions to roles <span class="dk">DISCO-18</span></li>
+          <li>Encrypt the FE DB at rest — go live, verified across sessions <span class="dk">DISCO-19</span></li>
+        </ul>
+        <div class="sl">Post-Shift Sync Workflow (DISCO-6)</div>
+        <ul class="il">
+          <li>Wireframe the conflict/failure management screens (post-shift upload) <span class="dk">DISCO-64</span></li>
+        </ul>
+        <div class="sl">Security note</div>
+        <ul class="il"><li>Encryption-at-rest goes live this month — major security milestone for ATO documentation</li></ul>
+      </div>
+      <div>
+        <div class="sl">Demo deliverable</div>
+        <div class="card" style="background:#fdf6ec;border-color:#854F0B">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">Demo: 781H offline + second-user ER + encryption</div>
+          <ul class="il">
+            <li>Save an 781H action while offline <span class="dk">DISCO-49</span></li>
+            <li>Second maintainer signs an 781H ER offline (no network)</li>
+            <li>Offline-Mode indicator and unsynced-changes count visible</li>
+            <li>Encryption-at-rest live but transparent to the user <span class="dk">DISCO-19</span></li>
+          </ul>
+          <div class="milestone-badge" style="background:#854F0B">781H + Encryption Ready ◆</div>
+        </div>
+        <div class="sl">Success criteria</div>
+        <ul class="il">
+          <li>781H save writes to the local DB offline; highest symbol updates correctly</li>
+          <li>RBAC restricts actions by role</li>
+          <li>Encrypted data confirmed unreadable outside an active session</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCTOBER -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#0d2a4a">October 2026 — Milestone 5 ★: Working Prototype</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 10</span> 23 Sep–6 Oct · <span class="sprint-tag">DISCO Sprint 11</span> 7–20 Oct · Post-shift sync-back complete; full cycle demonstrable.</div></div>
+      <span class="lbl" style="background:#0d2a4a;color:#fff">FINISH LINE — PROTOTYPE</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">Post-Shift Sync Workflow (DISCO-6)</div>
+        <ul class="il">
+          <li>Implement post-shift sync end-to-end <span class="dk">DISCO-61</span></li>
+          <li>Conflict management logic — deterministic deconfliction <span class="dk">DISCO-60</span></li>
+          <li>Audit table tracking edit/create/close/defer actions <span class="dk">DISCO-62</span></li>
+        </ul>
+        <div class="sl">Disconnected Maintenance Actions (DISCO-7)</div>
+        <ul class="il">
+          <li>New data-validation rules to prevent errors on re-connect <span class="dk">DISCO-55</span></li>
+        </ul>
+        <div class="sl">Prototype hardening <span class="offb">off-board</span></div>
+        <ul class="il">
+          <li>E2E across 781/781A/F/H/J/K; performance (500+ records, 300-entry queue)</li>
+          <li>Security review; SBOM (CycloneDX); FIPS encryption verified across sessions</li>
+        </ul>
+        <div class="sl">Decisions / deferred scope</div>
+        <ul class="il">
+          <li>Validation guardrails — confirm offline rule-engine scope</li>
+          <li class="oosi">Available Parts DB sync — manual entry only · OUT OF SCOPE</li>
+          <li class="oosi">Moving inspections / TCTO K→A — net-new capability · not in Tier 1</li>
+          <li class="oosi">MDS AI duplicate detection on resync — future enhancement</li>
+        </ul>
+      </div>
+      <div>
+        <div class="sl">Demo deliverable</div>
+        <div class="card" style="background:#f0f4f9;border-color:#0d2a4a">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">★ Senior Leadership Prototype Demo</div>
+          <ul class="il">
+            <li>CAC offline auth → pre-shift sync → go disconnected</li>
+            <li>Perform 781H and pre-synced form actions offline</li>
+            <li>Reconnect → post-shift sync → queue uploads in order <span class="dk">DISCO-61</span></li>
+            <li>Conflict surfaced &amp; resolved; audit trail captured <span class="dk">DISCO-60/62</span></li>
+            <li>IMDS push confirmed in the test environment</li>
+          </ul>
+          <div class="milestone-badge">PROTOTYPE COMPLETE ◆</div>
+        </div>
+        <div class="sl">ATO progress <span class="offb">off-board</span></div>
+        <ul class="il">
+          <li>eMASS registration complete; SSP first draft complete</li>
+          <li>STIG checklists initiated (App Security &amp; Dev STIG, Chromium STIG)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVEMBER -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#534AB7">November 2026 — Milestone 6: 781A Core Offline Actions</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 12</span> 21 Oct–3 Nov · <span class="sprint-tag">DISCO Sprint 13</span> 4–17 Nov · Extend offline capability to the 781A.</div></div>
+      <span class="lbl lp">Requires Prototype (M5)</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">781A Offline Actions — queue &amp; sync (DISCO-7)</div>
+        <ul class="il">
+          <li>Manual JCNs when creating discrepancies on the 781A <span class="dk">DISCO-56</span></li>
+          <li>WCE off a manual JCN <span class="dk">DISCO-57</span></li>
+          <li>781A — Create (save + XMIT) <span class="dk">DISCO-36</span></li>
+          <li>781A — Create &amp; Close (save + XMIT) <span class="dk">DISCO-37</span></li>
+          <li>781A — Close (save + XMIT) <span class="dk">DISCO-38</span></li>
+          <li>781A — Add WCE to JCN; Close WCE <span class="dk">DISCO-39 / 40</span></li>
+          <li>781A — Edit Discrepancy/Narrative; Edit WCE/Narrative <span class="dk">DISCO-41 / 42</span></li>
+          <li>781A — Mark Duplicate; Cancel Discrepancy <span class="dk">DISCO-43 / 45</span></li>
+          <li>781A — Info Note; Warning Note <span class="dk">DISCO-46 / 47</span></li>
+          <li>781A — Defer Discrepancy <span class="dk">DISCO-48</span></li>
+          <li>781K — Scheduling Discrepancy XMIT (defer K→A) <span class="dk">DISCO-51</span></li>
+          <li>Clear pre-synced suspenses (online/offline) <span class="dk">DISCO-52</span></li>
+          <li class="oosi">781A — Schedule Cannibalization — manual process required <span class="dk">DISCO-44</span></li>
+        </ul>
+        <div class="sl">UI/UX <span class="offb">off-board</span></div>
+        <ul class="il"><li>Upload Failure Report design completed (implementation in December)</li></ul>
+      </div>
+      <div>
+        <div class="sl">Demo deliverable</div>
+        <div class="card" style="background:#f3f2fe;border-color:#534AB7">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">Demo: 781A offline cycle</div>
+          <ul class="il">
+            <li>Generate a manual JCN offline — verify no server call <span class="dk">DISCO-56</span></li>
+            <li>Create a 781A discrepancy offline → queue → reconnect → verify on server <span class="dk">DISCO-36</span></li>
+            <li>Close a 781A discrepancy offline → queue → reconnect → verify on server <span class="dk">DISCO-38</span></li>
+          </ul>
+          <div class="milestone-badge" style="background:#534AB7">781A Actions Complete ◆</div>
+        </div>
+        <div class="sl">Success criteria</div>
+        <ul class="il">
+          <li>All three core 781A actions verified offline → sync → IMDS push</li>
+          <li>Manual JCN sequence continuity preserved across sessions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECEMBER -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div><div style="font-size:14px;font-weight:700;color:#993C1D">December 2026 — Milestones 7 &amp; 8: Upload Failure Tracking + RSO Deployment</div><div style="font-size:11px;color:#5f5e5a;margin-top:2px"><span class="sprint-tag">DISCO Sprint 14</span> 18 Nov–1 Dec · <span class="sprint-tag">DISCO Sprint 15</span> 2–15 Dec · <span class="sprint-tag">DISCO Sprint 16</span> 16–29 Dec</div></div>
+      <span class="lbl" style="background:#993C1D;color:#fff">RSO DEPLOYMENT</span>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="sl">Upload Failure Tracking — M7 (DISCO-6)</div>
+        <ul class="il">
+          <li>Conflict/Failed Management screen on the FE <span class="dk">DISCO-58</span></li>
+          <li>Sync error handling <span class="dk">DISCO-59</span></li>
+          <li>"Unsynced: Failed to Process" status chip on the 781A <span class="dk">DISCO-53</span></li>
+          <li>Upload Failure Report — review UI for failed uploads &amp; follow-up <span class="offb">off-board · not yet ticketed</span></li>
+        </ul>
+        <div class="sl">ATO &amp; deployment readiness <span class="offb">off-board</span></div>
+        <ul class="il">
+          <li>ATO granted — required before RSO deployment proceeds</li>
+          <li>Final STIG checklist items closed; SSP final review and sign-off complete</li>
+        </ul>
+      </div>
+      <div>
+        <div class="sl">RSO Deployment — M8 (due 31 Dec) <span class="offb">off-board</span></div>
+        <ul class="il">
+          <li>Application deployed to the RSO environment with M1–M7 capability verified</li>
+          <li>Deployment runbook completed and handed off to operations</li>
+        </ul>
+        <div class="card" style="background:#fef5f0;border-color:#993C1D;margin-top:8px">
+          <div style="font-weight:700;font-size:12px;color:#0d2a4a;margin-bottom:6px">Programme Complete — RSO Live</div>
+          <ul class="il">
+            <li>Full offline shift in production: CAC auth → pre-shift sync → form actions → sync-back</li>
+            <li>Upload Failure Report available to maintainers &amp; supervisors <span class="dk">DISCO-58</span></li>
+          </ul>
+          <div class="milestone-badge" style="background:#993C1D">RSO DEPLOYED ◆</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TAB 3 · TEAM CHECKLISTS ══════════════════════ -->
+<section id="t3" class="pnl">
+  <div class="note">Each item is a DISCO issue (or an off-board task). Check items off as they are merged and verified; the milestone progress bars on the <strong>Sprint Plan</strong> tab update automatically. Items already <strong>Done in Jira</strong> are pre-checked. Completion state is in-memory only and resets on reload — the DISCO board remains the system of record.</div>
+  <div id="chk-container"></div>
+</section>
+
+<!-- ══════════════════════ TAB 4 · STATUS REPORT ══════════════════════ -->
+<section id="t4" class="pnl">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+    <div style="font-size:13px;font-weight:700;color:#0d2a4a">DISCO Daily Status — derived from Jira as of 24 Jun 2026 · Print / Save as PDF</div>
+    <button class="btn btn-out" onclick="window.print()">🖨 Print / PDF</button>
+  </div>
+
+  <div class="card">
+    <div class="sr-hdr">
+      <h2>Digital Binder · Tier 1 Offline Capability · Status Report</h2>
+      <p>Classification: <span class="edt" contenteditable="true">[SET AS APPROPRIATE]</span> &nbsp;|&nbsp; Reporting Period: <span class="edt" contenteditable="true">DISCO Sprint 3 · June 2026 · Milestone 1</span> &nbsp;|&nbsp; Prepared by: <span class="edt" contenteditable="true">Team Lead</span> &nbsp;|&nbsp; Date: <span class="edt" contenteditable="true">24 Jun 2026</span></p>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:700;color:#5f5e5a">Overall Status</span>
+      <span class="statpill sp-a">🟡 At Risk</span>
+      <span style="font-size:11px;color:#5f5e5a">DISCO board · <a href="https://fiveforty.atlassian.net/jira/software/projects/DISCO/boards/827" style="color:#185FA5">827</a></span>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="sl">1 · Executive Summary</div>
+    <div style="font-size:11px;color:#3a3a38;line-height:1.65;margin-bottom:10px">
+      The preponderance of evidence in this cycle points not to a discrete blocker but to a structural one. Zero issues closed in the last twenty-four hours; a majority of active work is stale by Jira's own update timestamps; the entire fifty-item To Do backlog carries no assignee. None of this trips the board's formal "Blocked" mechanism — DISCO does not configure that status — yet the operational effect is the friction a named blocker would produce. Think of it this way: the team is not stuck on a single ticket; it is under-resourced against the full constituent parts of its own backlog. The discipline available to leadership this month is allocation, not engineering.
+    </div>
+
+    <!-- KEY METRICS -->
+    <div class="sl">2 · Key Metrics</div>
+    <div class="g4" style="margin-bottom:8px">
+      <div class="mbox"><div class="mbox-n">0</div><div class="mbox-l">Completed (last 24h)</div></div>
+      <div class="mbox"><div class="mbox-n">7</div><div class="mbox-l">Active (In Progress + Peer Review)</div></div>
+      <div class="mbox"><div class="mbox-n" style="color:#5f5e5a">0</div><div class="mbox-l">Blocked (status not configured)</div></div>
+      <div class="mbox"><div class="mbox-n" style="color:#5f5e5a">0</div><div class="mbox-l">High-Priority Open (none set)</div></div>
+    </div>
+    <table>
+      <tr><th>Status distribution (68 total · 6 epics + 62 children)</th><th style="width:90px">Count</th></tr>
+      <tr><td>⬜ To Do <span style="color:#5f5e5a">(50 child issues + 6 epics, all unassigned)</span></td><td>56</td></tr>
+      <tr><td>🔄 In Progress</td><td>5</td></tr>
+      <tr><td>🔍 Peer Review</td><td>2</td></tr>
+      <tr><td>✅ Done</td><td>5</td></tr>
+    </table>
+    <div class="note" style="margin-top:6px"><strong>Note on the zero entries.</strong> "Blocked" returns zero because DISCO's workflow does not include that status (To Do → In Progress → Peer Review → Done). "High-Priority Open" returns zero because no issue currently carries a Highest or High value — every prioritized issue in DISCO is set to "Lowest." Both are reported as confirmed states, not data gaps.</div>
+
+    <!-- HIGHLIGHTS -->
+    <div class="sl">3 · Highlights</div>
+    <ul class="il">
+      <li>No issues reached Done in the last 24 hours — reported explicitly per standing practice, not suppressed. The most recent resolution is DISCO-1, closed 17 Jun.</li>
+      <li>Two items show genuine forward motion within the window: local database hydration research <span class="dk">DISCO-63</span> and the CI/CD Electron-build expansion <span class="dk">DISCO-23</span> were both updated within the last day.</li>
+      <li>The remaining five active items have not been touched in six days, which tempers the read on overall velocity — addressed in §6.</li>
+    </ul>
+
+    <!-- IN PROGRESS -->
+    <div class="sl">4 · In Progress / Peer Review</div>
+    <table>
+      <tr><th>Key</th><th>Summary</th><th style="width:90px">Assignee</th><th style="width:80px">Status</th><th style="width:80px">Updated</th><th style="width:70px">Stale?</th></tr>
+      <tr><td>DISCO-23</td><td>CI/CD Pipeline Expansion — Electron Build &amp; Unsigned Artifact Push</td><td>Keegan Bean</td><td>In Progress</td><td>23 Jun</td><td><span class="fresh">No</span></td></tr>
+      <tr><td>DISCO-63</td><td>Research &amp; Document Local DB Hydration Strategy</td><td>Datta Sharma</td><td>In Progress</td><td>23 Jun</td><td><span class="fresh">No</span></td></tr>
+      <tr><td>DISCO-64</td><td>Wireframe the conflict/failure management screens</td><td>Matt Isaacs</td><td>In Progress</td><td>18 Jun</td><td><span class="stale">6 days</span></td></tr>
+      <tr><td>DISCO-65</td><td>Research tables &amp; schemas needed for local db</td><td>Raj Etta</td><td>In Progress</td><td>18 Jun</td><td><span class="stale">6 days</span></td></tr>
+      <tr><td>DISCO-66</td><td>Research &amp; create the migration strategy</td><td>Raj Etta</td><td>In Progress</td><td>18 Jun</td><td><span class="stale">6 days</span></td></tr>
+      <tr><td>DISCO-11</td><td>Research what db we will use &amp; its schema</td><td>Raj Etta</td><td>Peer Review</td><td>18 Jun</td><td><span class="stale">6 days</span></td></tr>
+      <tr><td>DISCO-12</td><td>Research encryption at REST in a disconnected state</td><td>Jorge Polanco</td><td>Peer Review</td><td>18 Jun</td><td><span class="stale">6 days</span></td></tr>
+    </table>
+    <div style="font-size:10px;color:#5f5e5a;margin-top:2px">Five of seven active items — 71% of in-flight work — have not been updated in six days. Raj Etta carries three of the seven (43%), the clearest instance of disproportionate load in this cycle.</div>
+
+    <!-- BLOCKERS -->
+    <div class="sl">5 · Critical Blockers</div>
+    <div class="srbox" style="border-left-color:#5f5e5a">
+      <h3>None configured</h3>
+      <div style="font-size:11px;color:#3a3a38;line-height:1.55">DISCO's workflow contains no "Blocked" status, so this category cannot be populated through the board mechanism. The operational risk that would ordinarily surface here is carried instead in the unassigned backlog: <strong>50 To Do issues, all unassigned</strong>, with no owner driving any of them toward intake.</div>
+    </div>
+
+    <!-- NOTES & RISKS -->
+    <div class="sl">6 · Notes &amp; Risks</div>
+    <div style="font-size:11px;color:#3a3a38;line-height:1.65;margin-bottom:8px">
+      The backlog carries fifty To Do issues, and all fifty are unassigned — a hundred-percent unassigned rate against the project's open work. None of it is distinguished by priority, since the project does not use the Highest/High tier; in effect, the team has no mechanism telling it which of the fifty to pick up first. This reinforces the staleness pattern above: without a priority signal and without owners, the path from To Do to In Progress has no forcing function. Two structural fixes would retire the bulk of this risk at once — assign owners against the unassigned epics, and adopt the priority field so future standups surface a genuine "not-yet-started" queue rather than reporting it empty by default.
+    </div>
+
+    <!-- DEMO DELIVERY RISK -->
+    <div class="sl" style="color:#A32D2D;background:#FCEBEB;padding:5px 8px;border-radius:4px;border-left:3px solid #A32D2D">7 · Risks to the Current Month's Demo — July · M2 Offline Auth &amp; Local Database (close of DISCO Sprint 5, ~28 Jul)</div>
+    <div style="font-size:11px;color:#3a3a38;line-height:1.65;margin:8px 0">
+      The M1 Foundation demo was delivered early on 18 June. The program now drives toward the M2 milestone at the close of DISCO Sprint 5 on or about 28 July. That demo's centerpiece is a maintainer authenticating via CAC on a disconnected Windows device against a structured local database — capability that, as of this report, rests entirely on unassigned Electron Integration and Authentication &amp; Encryption epics and on June research spikes that have not yet closed. The risks below are the specific conditions that could prevent a clean M2 demonstration on 28 July.
+    </div>
+    <table>
+      <tr><th>Risk to the demo</th><th style="width:60px">Severity</th><th style="width:30%">Impact on the demo</th><th style="width:30%">Mitigation before 28 Jul</th></tr>
+      <tr>
+        <td>June research not fully closed — DB selection <span class="dk">DISCO-11</span> &amp; encryption <span class="dk">DISCO-12</span> still in Peer Review; hydration/schema/migration <span class="dk">DISCO-63/65/66</span> still In Progress. M2's local DB cannot be structured until these resolve.</td>
+        <td><span class="lbl lr">HIGH</span></td>
+        <td>Without a decided DB and schema, DISCO-26/27 (local DB tables &amp; init) cannot start; the demo has no data layer to show</td>
+        <td>Close all five June research items by 30 Jun before DISCO Sprint 4 opens · <em>Raj Etta / Datta Sharma</em></td>
+      </tr>
+      <tr>
+        <td>DISCO-13 (Electron Integration) entirely unassigned — offline auth <span class="dk">DISCO-22</span>, scaffolding <span class="dk">DISCO-20</span>, and IPC <span class="dk">DISCO-21</span> are all To Do with no owner; the M2 demo centerpiece (offline CAC login) depends on DISCO-22</td>
+        <td><span class="lbl lr">HIGH</span></td>
+        <td>If no one owns DISCO-22 by the start of DISCO Sprint 4, the offline-auth flow cannot be built in the two sprints remaining</td>
+        <td>Assign DISCO-13 epic owner and populate DISCO-20/21/22 into DISCO Sprint 4 immediately · <em>Team Lead / PM</em></td>
+      </tr>
+      <tr>
+        <td>DISCO-8 (Authentication &amp; Encryption) entirely unassigned — local DB creation <span class="dk">DISCO-17</span>, RBAC <span class="dk">DISCO-18</span>, and encryption-at-rest <span class="dk">DISCO-19</span> all To Do with no owner</td>
+        <td><span class="lbl lr">HIGH</span></td>
+        <td>DISCO-17 (FE DB in a shared location) is required for the M2 demo; without an owner it will not land in July</td>
+        <td>Assign DISCO-8 epic owner; sequence DISCO-17 into DISCO Sprint 4 · <em>Team Lead / PM</em></td>
+      </tr>
+      <tr>
+        <td>Local DB tables, initialization, and activeUser endpoint all unstarted and unassigned — <span class="dk">DISCO-25 / 26 / 27 / 67</span></td>
+        <td><span class="lbl la">MED</span></td>
+        <td>The demo cannot show a structured database or a populated user list; M2 reads as incomplete</td>
+        <td>Assign and pull into DISCO Sprint 4 once DB selection closes · <em>Dev assignees TBD</em></td>
+      </tr>
+      <tr>
+        <td>DoD code-signing pipeline <span class="dk">DISCO-24</span> unstarted and unassigned — the M2 demo requires a signed installer</td>
+        <td><span class="lbl la">MED</span></td>
+        <td>An unsigned installer triggers SmartScreen warnings and fails the demo on a locked-down government machine</td>
+        <td>Assign DISCO-24 to Keegan Bean; target close by end of DISCO Sprint 4 · <em>Keegan Bean</em></td>
+      </tr>
+      <tr>
+        <td>No priority signal — every issue set to "Lowest"; no mechanism distinguishes M2-blocking items from the rest of the 50-item To Do queue</td>
+        <td><span class="lbl la">MED</span></td>
+        <td>Intake for DISCO Sprints 4–5 defaults to arbitrary rather than demo-critical ordering</td>
+        <td>Adopt the Jira priority field; mark DISCO-17/20/21/22/24/26/27 as Highest · <em>Team Lead</em></td>
+      </tr>
+    </table>
+
+    <!-- UPCOMING PRIORITIES -->
+    <div class="sl">8 · Upcoming Priorities</div>
+    <ul class="il">
+      <li><strong>DISCO-13 — Electron Integration</strong> (epic, unassigned) — the largest unclaimed scope into M2; assignment unblocks the desktop runtime and offline auth.</li>
+      <li><strong>DISCO-8 — Authentication &amp; Encryption</strong> (epic, unassigned) — security-load-bearing epic with no current owner; fold the FIPS items (DISCO-69/70/71) under it.</li>
+      <li><strong>DISCO-6 — Post-Shift Sync Workflow</strong> (epic) — depends on hydration/research already underway in DISCO-63 / 65.</li>
+      <li><strong>DISCO-7 — Disconnected Maintenance Actions</strong> (epic, 27 issues, unstarted) — the largest body of work; sequencing begins in August (M3).</li>
+    </ul>
+    <div style="font-size:11px;color:#3a3a38;line-height:1.6;margin-top:6px">The decisive action available this cycle is not a technical fix but an allocation one: assign owners to the unassigned backlog and re-engage the five stale items before they age further.</div>
+    <div style="text-align:right;margin-top:6px"><a href="https://fiveforty.atlassian.net/jira/software/projects/DISCO/boards/827" style="font-size:10px;color:#185FA5">📋 View DISCO Board →</a></div>
+  </div>
+</section>
+
+<script>
+// ─── Tab switching ───────────────────────────────────────────
+function sw(id,btn){
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ─── Checklist data — reconciled to Jira DISCO (24 Jun 2026) ──
+// Prefixes: "✓ " already Done in Jira (pre-checked) · "[OFF] " tracked off the DISCO board · "[OOS]/[MANUAL] " out of scope/manual
+const MONTHS=[
+  {id:1,name:'June 2026',color:'#185FA5',label:'M1 · Foundation · DISCO Sprint 3',cats:[
+    {name:'Prototyping & Research (DISCO-3)',items:[
+      '✓ Online Electron prototype of the Digital Binder built & demonstrated · DISCO-1',
+      '✓ Key Design Decisions doc for the Electron app · DISCO-14',
+      '✓ Data-sync process researched and documented · DISCO-15',
+      '✓ CAC reader access from within Electron researched and documented · DISCO-16',
+      'Local DB selection & schema — close out of Peer Review · DISCO-11',
+      'Encryption-at-rest in a disconnected state — close out of Peer Review · DISCO-12',
+      'Local database hydration process researched · DISCO-63',
+      'Local DB tables & schemas researched · DISCO-65',
+      'Migration strategy researched & drafted · DISCO-66'
+    ]},
+    {name:'FIPS-Compliant Local Database — emerging scope',items:[
+      'Research & prototype a FIPS-compliant open-source DB library · DISCO-71',
+      'Introduce FIPS compliance to the local DB · DISCO-69',
+      'Define DB storage-location configuration · DISCO-70'
+    ]},
+    {name:'Electron Integration (DISCO-13)',items:[
+      'CI/CD pipeline expanded — Electron build & unsigned artifact push · DISCO-23'
+    ]},
+    {name:'ATO Preparation',items:[
+      '[OFF] ISSO and ISSM assigned',
+      '[OFF] eMASS system registration initiated',
+      '[OFF] System boundary documented (Electron client + GCP backend + IMDS)',
+      '[OFF] SSP outline started: system description, data flows, inherited FedRAMP controls',
+      '[OFF] Architecture diagrams (IPC bridge + security boundaries) drafted for Delta Assessment / eMASS'
+    ]}
+  ]},
+  {id:2,name:'July 2026',color:'#1a6e9e',label:'M2 · Offline Auth & Local DB · DISCO Sprints 4–5',cats:[
+    {name:'Electron Integration (DISCO-13)',items:[
+      'Scaffolding & build infrastructure · DISCO-20',
+      'Security boundaries & IPC — contextIsolation, nodeIntegration:false, sandbox · DISCO-21',
+      'Implement single-user authentication while offline · DISCO-22',
+      'CI/CD pipeline expanded — DoD code signing · DISCO-24'
+    ]},
+    {name:'Authentication & Encryption (DISCO-8)',items:[
+      'Create the front-end database in a shared location · DISCO-17'
+    ]},
+    {name:'Pre-Shift Sync foundations (DISCO-5)',items:[
+      '✓ Crew-chief pre-shift tail-selection design · DISCO-10',
+      'Create all local DB tables for disconnected storage/retrieval · DISCO-26',
+      'Implement the local DB initialization workflow · DISCO-27',
+      'Implement the activeUser endpoint (users + metadata) · DISCO-25',
+      'Research & prototype how to source activeUser data · DISCO-67'
+    ]}
+  ]},
+  {id:3,name:'August 2026',color:'#3B6D11',label:'M3 · Pre-Shift Sync & Core Saves · DISCO Sprints 6–7',cats:[
+    {name:'Pre-Shift Sync Workflow (DISCO-5)',items:[
+      'Build the Prepare Binder Selection Modal (FE) · DISCO-28',
+      'Build the Prepare Binder Progress Modal & notifications (FE) · DISCO-68',
+      'Endpoint: take a tail list, refresh data, return to the FE · DISCO-29',
+      'Sync refreshed data to the appropriate local DB tables · DISCO-30'
+    ]},
+    {name:'Disconnected Maintenance Actions — queuing & core saves (DISCO-7)',items:[
+      'Queuing logic for saves & XMITs in the FE application · DISCO-31',
+      'Queue processing logic for saves & XMITs in the BE service · DISCO-32',
+      'Save action on the Info Notes page (online + offline) · DISCO-33',
+      'Save action on Form 781F (online + offline) · DISCO-34',
+      'Save action on Form 781 (online + offline) · DISCO-35',
+      'Data Validation Rules Engine on the FE — initial · DISCO-54'
+    ]}
+  ]},
+  {id:4,name:'September 2026',color:'#854F0B',label:'M4 · 781H Offline & Encryption · DISCO Sprints 8–9',cats:[
+    {name:'Disconnected Maintenance Actions (DISCO-7)',items:[
+      'Save action on Form 781H (online + offline) · DISCO-49',
+      'Migrate updateHighestSeveritySymbol logic to the FE · DISCO-50'
+    ]},
+    {name:'Authentication & Encryption (DISCO-8)',items:[
+      'Implement RBAC permissions to lock actions to roles · DISCO-18',
+      'Encrypt the FE DB at rest — go live, verified across sessions · DISCO-19'
+    ]},
+    {name:'Post-Shift Sync Workflow (DISCO-6)',items:[
+      'Wireframe the conflict/failure management screens (post-shift upload) · DISCO-64'
+    ]}
+  ]},
+  {id:5,name:'October 2026',color:'#0d2a4a',label:'M5 ★ · Working Prototype · DISCO Sprints 10–11',cats:[
+    {name:'Post-Shift Sync Workflow (DISCO-6)',items:[
+      'Implement post-shift sync end-to-end · DISCO-61',
+      'Conflict management logic — deterministic deconfliction · DISCO-60',
+      'Audit table tracking edit/create/close/defer actions · DISCO-62'
+    ]},
+    {name:'Disconnected Maintenance Actions (DISCO-7)',items:[
+      'New data-validation rules to prevent errors on re-connect · DISCO-55'
+    ]},
+    {name:'Prototype hardening',items:[
+      '[OFF] E2E across 781 / 781A / 781F / 781H / 781J / 781K',
+      '[OFF] Performance: 500+ records, 300-entry queue replay under 60s',
+      '[OFF] Security review; SBOM in CycloneDX format',
+      '[OFF] FIPS encryption verified across session boundaries'
+    ]},
+    {name:'Decisions / deferred scope',items:[
+      'Validation guardrails — confirm offline rule-engine scope · DISCO-55',
+      '[OOS] Available Parts DB sync — manual entry only',
+      '[OOS] Moving inspections / TCTO K→A — net-new capability, not in Tier 1',
+      '[OOS] MDS AI duplicate detection on resync — future enhancement'
+    ]},
+    {name:'Prototype Demo & ATO',items:[
+      '[OFF] Demo script written and rehearsed; realistic test data loaded',
+      '[OFF] eMASS registration complete; SSP first draft complete',
+      '[OFF] STIG checklists initiated (App Security & Dev STIG, Chromium STIG)'
+    ]}
+  ]},
+  {id:6,name:'November 2026',color:'#534AB7',label:'M6 · 781A Core Offline Actions · DISCO Sprints 12–13',cats:[
+    {name:'781A Offline Actions — queue & sync (DISCO-7)',items:[
+      'Manual JCNs when creating discrepancies on the 781A · DISCO-56',
+      'WCE off a manual JCN · DISCO-57',
+      '781A — Create (save + XMIT) · DISCO-36',
+      '781A — Create & Close (save + XMIT) · DISCO-37',
+      '781A — Close (save + XMIT) · DISCO-38',
+      '781A — Add WCE to JCN (save + XMIT) · DISCO-39',
+      '781A — Close WCE (save + XMIT) · DISCO-40',
+      '781A — Edit Discrepancy/Narrative (save + XMIT) · DISCO-41',
+      '781A — Edit WCE/Narrative (save + XMIT) · DISCO-42',
+      '781A — Mark as Duplicate (save + XMIT) · DISCO-43',
+      '781A — Cancel Discrepancy (save + XMIT) · DISCO-45',
+      '781A — Info Note (save) · DISCO-46',
+      '781A — Warning Note (save) · DISCO-47',
+      '781A — Defer Discrepancy (save + XMIT) · DISCO-48',
+      '781K — Scheduling Discrepancy XMIT (defer K→A) · DISCO-51',
+      'Clear pre-synced suspenses (online/offline) · DISCO-52',
+      '[MANUAL] 781A — Schedule Cannibalization — manual process required · DISCO-44'
+    ]},
+    {name:'UI/UX',items:[
+      '[OFF] Upload Failure Report design completed (implementation in December)'
+    ]}
+  ]},
+  {id:7,name:'December 2026',color:'#993C1D',label:'M7 + M8 · Failure Tracking + RSO · DISCO Sprints 14–16',cats:[
+    {name:'Upload Failure Tracking — M7 (DISCO-6)',items:[
+      'Conflict/Failed Management screen on the FE · DISCO-58',
+      'Sync error handling · DISCO-59',
+      '"Unsynced: Failed to Process" status chip on the 781A · DISCO-53',
+      '[OFF] Upload Failure Report — review UI for failed uploads (not yet ticketed)'
+    ]},
+    {name:'ATO & Deployment Readiness — M8',items:[
+      '[OFF] ATO granted — required before RSO deployment proceeds',
+      '[OFF] Final STIG checklist items closed; SSP final review and sign-off',
+      '[OFF] Application deployed to the RSO environment with M1–M7 capability verified',
+      '[OFF] Deployment runbook completed and handed off to operations'
+    ]}
+  ]}
+];
+
+// ─── Helpers ─────────────────────────────────────────────────
+function styleKeys(s){return s.replace(/(DISCO-\d+)/g,'<span class="dk">$1</span>');}
+
+// ─── Build checklist accordions ──────────────────────────────
+function buildChecklists(){
+  const container=document.getElementById('chk-container');
+  MONTHS.forEach(m=>{
+    const btn=document.createElement('button');
+    btn.className='acc-btn';
+    btn.innerHTML=`<span><span style="color:${m.color}">${m.name}</span><span style="font-size:11px;color:#5f5e5a;font-weight:500;margin-left:8px">${m.label}</span></span><span class="acc-right"><span class="lbl lb" id="pct-${m.id}">0%</span><span class="arr">▼</span></span>`;
+    const body=document.createElement('div');
+    body.className='acc-body';
+    btn.onclick=()=>{btn.classList.toggle('open');body.classList.toggle('open')};
+    m.cats.forEach((cat,ci)=>{
+      const ch=document.createElement('div');
+      ch.className='cat-hdr';
+      ch.innerHTML=styleKeys(cat.name);
+      body.appendChild(ch);
+      const ul=document.createElement('ul');ul.className='cl';
+      cat.items.forEach((raw,i)=>{
+        let item=raw,done=false,oos=false,off=false;
+        if(item.startsWith('✓ ')){done=true;item=item.slice(2);}
+        if(item.startsWith('[OOS] ')){oos=true;item=item.slice(6);}
+        else if(item.startsWith('[MANUAL] ')){oos=true;item=item.slice(9);}
+        if(item.startsWith('[OFF] ')){off=true;item=item.slice(6);}
+        const id=`m${m.id}_${ci}_${i}`;
+        const li=document.createElement('li');
+        if(oos) li.style.cssText='background:#f1efe8;border-radius:4px;padding:4px 4px 4px 8px;opacity:.75';
+        const offTag=off?' <span class="offb">off-board</span>':'';
+        const oosTag=oos?' <span class="offb" style="color:#7a1c1c;border-color:#A32D2D;background:#FCEBEB">OUT OF SCOPE</span>':'';
+        li.innerHTML=`<input type="checkbox" id="${id}" data-month="${m.id}" ${done?'checked':''} ${oos?'disabled':''} ><label for="${id}">${styleKeys(item)}${offTag}${oosTag}</label>`;
+        ul.appendChild(li);
+      });
+      body.appendChild(ul);
+    });
+    container.appendChild(btn);
+    container.appendChild(body);
+  });
+}
+
+// ─── Update milestone progress bars (excludes out-of-scope) ──
+function updateProgress(){
+  MONTHS.forEach(m=>{
+    const all=document.querySelectorAll(`input[data-month="${m.id}"]:not([disabled])`);
+    const done=document.querySelectorAll(`input[data-month="${m.id}"]:not([disabled]):checked`);
+    const pct=all.length?Math.round(done.length/all.length*100):0;
+    const bar=document.getElementById(`prog-${m.id}`);
+    const lbl=document.getElementById(`prog-lbl-${m.id}`);
+    const pctLbl=document.getElementById(`pct-${m.id}`);
+    if(bar)bar.style.width=pct+'%';
+    if(lbl)lbl.textContent=pct+'%';
+    if(pctLbl)pctLbl.textContent=pct+'%';
+  });
+}
+
+// ─── Persistent storage helpers (Claude Artifact Storage API) ────
+// Saves every non-disabled checkbox state to window.storage on change.
+// Restores state on page load; pre-checked Done items remain correct
+// because buildChecklists() runs first and restoreChecklistState()
+// only overwrites entries that exist in the saved snapshot.
+
+const STORAGE_KEY = 'disco-poam-checklist-v3';
+
+async function saveChecklistState() {
+  const inputs = document.querySelectorAll('#chk-container input[type="checkbox"]:not([disabled])');
+  const state = {};
+  inputs.forEach(el => { state[el.id] = el.checked; });
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(state));
+    flashSaveIndicator();
+  } catch(e) {
+    console.warn('POA&M storage save failed:', e);
+  }
+}
+
+async function restoreChecklistState() {
+  try {
+    const result = await window.storage.get(STORAGE_KEY);
+    if (!result || !result.value) return;
+    const state = JSON.parse(result.value);
+    Object.entries(state).forEach(([id, checked]) => {
+      const el = document.getElementById(id);
+      if (el && !el.disabled) el.checked = checked;
+    });
+  } catch(e) {
+    // No saved state yet — first load, nothing to restore
+  }
+  updateProgress();
+}
+
+function flashSaveIndicator() {
+  let ind = document.getElementById('save-ind');
+  if (!ind) {
+    ind = document.createElement('div');
+    ind.id = 'save-ind';
+    ind.style.cssText = 'position:fixed;bottom:14px;right:16px;background:#3B6D11;color:#fff;' +
+      'font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px;' +
+      'opacity:0;transition:opacity .25s;z-index:9999;pointer-events:none';
+    ind.textContent = '✓ Progress saved';
+    document.body.appendChild(ind);
+  }
+  ind.style.opacity = '1';
+  clearTimeout(ind._t);
+  ind._t = setTimeout(() => { ind.style.opacity = '0'; }, 1800);
+}
+
+// ─── Patch updateProgress to also persist after recalculation ────
+const _origUpdateProgress = updateProgress;
+function updateProgress() {
+  _origUpdateProgress();
+}
+
+// Wire saveChecklistState into every non-disabled checkbox after build
+function patchCheckboxSave() {
+  document.querySelectorAll('#chk-container input[type="checkbox"]:not([disabled])')
+    .forEach(el => {
+      el.addEventListener('change', () => {
+        updateProgress();
+        saveChecklistState();
+      });
+      // Remove the inline onchange so we don't double-fire
+      el.removeAttribute('onchange');
+    });
+}
+
+// ─── Init ────────────────────────────────────────────────────
+buildChecklists();
+patchCheckboxSave();
+// Restore persisted state (async), then recalculate progress bars
+restoreChecklistState();
+</script>
+</body>
+</html>

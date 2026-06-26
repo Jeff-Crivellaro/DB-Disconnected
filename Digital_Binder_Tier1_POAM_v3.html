@@ -95,6 +95,17 @@ tr:nth-child(even) td{background:#fafaf8}
 .legend-box{display:flex;gap:12px;align-items:center;font-size:10px;color:#5f5e5a;padding:6px 10px;background:#fafaf8;border:1px solid #d3d1c7;border-radius:6px;margin-bottom:10px;flex-wrap:wrap}
 .legend-item{display:flex;align-items:center;gap:4px}
 .legend-swatch{width:12px;height:12px;border-radius:2px}
+
+.ra-num{font-size:10px;font-weight:800;color:#0d2a4a;background:#E6F1FB;padding:1px 7px;border-radius:4px;margin-right:6px;flex-shrink:0}
+.ra-btn{font-size:9px;font-weight:700;background:#f1efe8;color:#5f5e5a;border:1px solid #d3d1c7;border-radius:4px;padding:2px 7px;cursor:pointer;margin-top:5px;display:inline-flex;align-items:center;gap:3px;font-family:inherit;transition:background .15s}
+.ra-btn:hover{background:#E6F1FB;color:#185FA5;border-color:#185FA5}
+.ra-body{display:none;background:#f8fafd}
+.ra-body td{padding:12px 14px;font-size:11px;color:#3a3a38;line-height:1.65;border-top:1px dashed #e0ede8}
+.ra-inner{max-width:860px}
+.ra-inner p{margin-bottom:7px}
+.ra-inner p:last-child{margin-bottom:0}
+.ra-issues{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+
 @media print{
   .tabs,.tab,.btn,.acc-btn .arr{display:none!important}
   .pnl{display:block!important;page-break-after:always}
@@ -113,7 +124,7 @@ tr:nth-child(even) td{background:#fafaf8}
     <span class="chip">RSO Deployment Target: Dec 2026 (M8)</span>
     <span class="chip">8 Milestone Demos · 7 Months</span>
     <span class="chip">14 DISCO Sprints · S3–S16</span>
-    <span class="chip">6 Jira Epics · 63 Child Issues</span>
+    <span class="chip">6 Jira Epics · 62 Child Issues</span>
     <span class="chip">Classification: [SET AS APPROPRIATE]</span>
   </div>
 </header>
@@ -635,19 +646,135 @@ tr:nth-child(even) td{background:#fafaf8}
     <div class="mc m7"><div class="mc-hdr">M7+M8 · December<span>Failure Tracking + RSO · S14–S16</span></div><div class="mc-body"><div id="prog-lbl-7" class="prog-lbl">0%</div><div class="prog-wrap"><div class="prog-bar" id="prog-7" style="width:0%;background:#993C1D"></div></div></div></div>
   </div>
 
-  <!-- RISK REGISTER -->
-  <div class="sl">Risk register</div>
+  <!-- RISK ASSESSMENT -->
+  <div class="sl">Risk Assessment</div>
   <table>
-    <tr><th>Risk</th><th style="width:90px">Window</th><th style="width:70px">Severity</th><th>Mitigation</th><th style="width:120px">Owner</th></tr>
-    <tr><td>ATO lead time delays installation on government hardware</td><td>All</td><td><span class="lbl lr">HIGH</span></td><td>Begin eMASS registration in June; prototype runs on dev machines until ATO granted</td><td>ISSO / PM</td></tr>
-    <tr><td>Gating research not closed before the M1 demo — DB selection (DISCO-11) &amp; encryption (DISCO-12) in Peer Review; hydration/schema/migration (DISCO-63/65/66) In Progress</td><td>S3</td><td><span class="lbl lr">HIGH</span></td><td>Merge the two peer-review spikes this week; close the three in-progress spikes by 30 Jun</td><td>Raj Etta / Datta Sharma</td></tr>
-    <tr><td>50-issue To Do backlog is 100% unassigned; epics DISCO-13 / 8 / 7 have no owner driving intake</td><td>S3–S4</td><td><span class="lbl lr">HIGH</span></td><td>Assign epic owners during DISCO Sprint 3; without owners, July (M2) work cannot start</td><td>Team Lead / PM</td></tr>
-    <tr><td>Native module (node-pcsclite) fails to compile for the target Electron ABI</td><td>S4</td><td><span class="lbl lr">HIGH</span></td><td>Spike native compilation now as part of the Electron shell; do not defer to August</td><td>Lead Dev (Keegan)</td></tr>
-    <tr><td>Single-contributor concentration — Raj Etta holds 3 of 7 active items, all on the DB critical path</td><td>S3–S5</td><td><span class="lbl la">MED</span></td><td>Redistribute or pair on DISCO-65 / 66 before schema work begins</td><td>Team Lead</td></tr>
-    <tr><td>No priority signal — every DISCO issue is set to "Lowest"; no forcing function for triage</td><td>All</td><td><span class="lbl la">MED</span></td><td>Adopt the Jira priority field; flag demo-blocking items as Highest</td><td>Team Lead</td></tr>
-    <tr><td>Batch sync-back performance under a large queue (300+ entries)</td><td>S10–S11</td><td><span class="lbl la">MED</span></td><td>Load-test a 300-entry queue before the prototype freeze</td><td>Backend Lead</td></tr>
-    <tr><td>CAC middleware version variance across dev hardware</td><td>S6–S9</td><td><span class="lbl la">MED</span></td><td>Inventory hardware in June; test on at least two card-reader variants</td><td>Lead Dev</td></tr>
-    <tr><td>Chromium CVE released during the build window</td><td>All</td><td><span class="lbl la">MED</span></td><td>Subscribe to Electron security advisories; enforce a 15-day critical-patch SLA</td><td>DevOps</td></tr>
+    <tr>
+      <th>#</th>
+      <th>Risk</th>
+      <th style="width:90px">Window</th>
+      <th style="width:70px">Severity</th>
+      <th>Mitigation</th>
+      <th style="width:120px">Owner</th>
+    </tr>
+
+    <!-- R1 -->
+    <tr>
+      <td style="width:32px;text-align:center;vertical-align:middle"><span class="ra-num">1</span></td>
+      <td>ATO lead time delays installation on government hardware<br>
+        <button class="ra-btn" onclick="toggleRA('r1')">▶ Analysis</button></td>
+      <td>All</td>
+      <td><span class="lbl lr">HIGH</span></td>
+      <td>Begin eMASS registration in June; prototype runs on dev machines until ATO granted</td>
+      <td>ISSO / PM</td>
+    </tr>
+    <tr class="ra-body" id="rd-r1">
+      <td></td>
+      <td colspan="5"><div class="ra-inner">
+        <p>The ATO process requires ISSO/ISSM assignment, eMASS system registration, a System Security Plan, STIG checklist completion (App Security and Development STIG plus the Chromium STIG), and a final authorization decision — a sequence that commonly runs four to six months even when initiated promptly, and cannot be abbreviated by the development team.</p>
+        <p>The specific DISCO issues that intersect this risk most directly are <span class="dk">DISCO-19</span> (encrypt the FE DB at rest — September gate), <span class="dk">DISCO-18</span> (RBAC), and <span class="dk">DISCO-22</span> (single-user offline authentication). All three are load-bearing controls for the SSP's AC-3 (access enforcement) and IA-2 (identification and authentication) entries; all three are currently unassigned. If any of those tickets slip, the SSP cannot assert the relevant security posture and the authorization timeline compresses against the December deployment target.</p>
+        <p>No single Jira issue tracks the ATO work itself because it runs in eMASS rather than DISCO. That absence is itself a risk signal: off-board tracking means this work is invisible to the daily standup rhythm and will not appear in status reports unless the team lead actively surfaces it each sprint.</p>
+        <div class="ra-issues"><span class="dk">DISCO-19</span><span class="dk">DISCO-18</span><span class="dk">DISCO-22</span><span class="offb">eMASS (off-board)</span></div>
+      </div></td>
+    </tr>
+
+    <!-- R2 -->
+    <tr>
+      <td style="text-align:center;vertical-align:middle"><span class="ra-num">2</span></td>
+      <td>Gating research not closed — DB selection <span class="dk">DISCO-11</span> &amp; encryption <span class="dk">DISCO-12</span> in Peer Review; hydration/schema/migration <span class="dk">DISCO-63/65/66</span> In Progress<br>
+        <button class="ra-btn" onclick="toggleRA('r2')">▶ Analysis</button></td>
+      <td>S3</td>
+      <td><span class="lbl lr">HIGH</span></td>
+      <td>Merge the two peer-review spikes this week; close the three in-progress spikes by 30 Jun</td>
+      <td>Raj Etta / Datta Sharma</td>
+    </tr>
+    <tr class="ra-body" id="rd-r2">
+      <td></td>
+      <td colspan="5"><div class="ra-inner">
+        <p><span class="dk">DISCO-11</span> (DB selection and schema, Peer Review, Raj Etta) is the decision gate for the entire local-storage architecture. Until it closes with a settled decision, <span class="dk">DISCO-17</span> (create the FE DB in a shared location), <span class="dk">DISCO-26</span> (create all local DB tables), and <span class="dk">DISCO-27</span> (implement the DB initialization workflow) cannot be written — those three tickets implement a database whose identity DISCO-11 has not yet settled. <span class="dk">DISCO-12</span> (encryption-at-rest, Peer Review, Jorge Polanco) gates <span class="dk">DISCO-19</span> and informs the FIPS-library spike in <span class="dk">DISCO-71</span>.</p>
+        <p><span class="dk">DISCO-63</span> (hydration, In Progress, Datta Sharma), <span class="dk">DISCO-65</span> (tables and schemas, In Progress, Raj Etta), and <span class="dk">DISCO-66</span> (migration strategy, In Progress, Raj Etta) have not been updated in six days. All three provide the schema and hydration logic that <span class="dk">DISCO-29</span> (refresh endpoint), <span class="dk">DISCO-30</span> (sync to local DB tables), and the full pre-shift sync workflow depend on. The dependency chain is sequential — no parallel path exists that bypasses the schema decision.</p>
+        <p>Both peer-review items need a human decision to merge, not further development. The three In Progress items have a staleness signal that warrants a synchronous standup check before the close of DISCO Sprint 3.</p>
+        <div class="ra-issues"><span class="dk">DISCO-11</span><span class="dk">DISCO-12</span><span class="dk">DISCO-63</span><span class="dk">DISCO-65</span><span class="dk">DISCO-66</span><span style="font-size:9px;color:#5f5e5a">Gates → DISCO-17, 26, 27, 29, 30, 71</span></div>
+      </div></td>
+    </tr>
+
+    <!-- R3 -->
+    <tr>
+      <td style="text-align:center;vertical-align:middle"><span class="ra-num">3</span></td>
+      <td>Native module (node-pcsclite) fails to compile for the target Electron ABI<br>
+        <button class="ra-btn" onclick="toggleRA('r3')">▶ Analysis</button></td>
+      <td>S4</td>
+      <td><span class="lbl lr">HIGH</span></td>
+      <td>Spike native compilation now as part of the Electron shell; do not defer to August</td>
+      <td>Lead Dev (Keegan)</td>
+    </tr>
+    <tr class="ra-body" id="rd-r3">
+      <td></td>
+      <td colspan="5"><div class="ra-inner">
+        <p>The CAC authentication architecture routes the hardware call through a C++ native binding: the Electron main process uses <code>node-pcsclite</code> to send APDUs to the Windows PC/SC stack (<code>winscard.dll</code>), extract the EDIPI from the X.509 certificate (OID 2.5.29.17), and return a boolean to the Angular renderer across the IPC bridge established by <span class="dk">DISCO-21</span>. This entire chain executes reliably on developer hardware; none of it has been tested on a DoD workstation image.</p>
+        <p><span class="dk">DISCO-16</span> (Done) confirmed the architectural path is viable on developer machines. Done on DISCO-16 established feasibility on uncontrolled hardware — it does not confirm that <span class="dk">DISCO-22</span>'s implementation will succeed on a controlled DoD image, where the PC/SC middleware version may differ materially from what developers are running. The native module must be compiled against the target Electron ABI; when the Electron version changes during the build window, <code>electron-rebuild</code> must recompile the binding, and any ABI mismatch surfaces as a runtime failure.</p>
+        <p>The risk window is DISCO Sprint 4 — the sprint in which DISCO-22 would be built from its current To Do state. A compilation failure caught in S4 still permits a remediation sprint before the M2 demo; one caught in S5 leaves under two weeks.</p>
+        <div class="ra-issues"><span class="dk">DISCO-22</span><span class="dk">DISCO-21</span><span class="dk">DISCO-16 ✓</span><span style="font-size:9px;color:#5f5e5a">node-pcsclite → winscard.dll → EDIPI extraction</span></div>
+      </div></td>
+    </tr>
+
+    <!-- R4 -->
+    <tr>
+      <td style="text-align:center;vertical-align:middle"><span class="ra-num">4</span></td>
+      <td>Batch sync-back performance under a large queue (300+ entries)<br>
+        <button class="ra-btn" onclick="toggleRA('r4')">▶ Analysis</button></td>
+      <td>S10–S11</td>
+      <td><span class="lbl la">MED</span></td>
+      <td>Load-test a 300-entry queue before the prototype freeze</td>
+      <td>Backend Lead</td>
+    </tr>
+    <tr class="ra-body" id="rd-r4">
+      <td></td>
+      <td colspan="5"><div class="ra-inner">
+        <p>The post-shift sync workflow requires that a queue of offline actions replay against the server in order, with conflicts detected (<span class="dk">DISCO-60</span>), uploaded (<span class="dk">DISCO-61</span>), and audited (<span class="dk">DISCO-62</span>). The upstream queuing infrastructure in <span class="dk">DISCO-31</span> (FE queuing logic) and <span class="dk">DISCO-32</span> (BE service) determines whether the replay is sequential or batched; a naïve sequential pattern at 300ms average network latency across 300 entries exceeds 90 seconds on a reliable connection — materially worse on cellular or degraded links common at remote maintenance sites.</p>
+        <p>The performance risk materializes specifically in <span class="dk">DISCO-61</span> — that is the ticket where the sync mechanism transitions from design to running code. A performance regression discovered during DISCO Sprint 10 or 11 is recoverable before the M5 prototype demo on 20 October; one surfaced during the demo rehearsal is not. The M5 prototype is the senior-leadership milestone; a sync that completes in 90+ seconds fails the demo scenario even if every other capability works correctly.</p>
+        <div class="ra-issues"><span class="dk">DISCO-61</span><span class="dk">DISCO-60</span><span class="dk">DISCO-62</span><span class="dk">DISCO-31</span><span class="dk">DISCO-32</span></div>
+      </div></td>
+    </tr>
+
+    <!-- R5 -->
+    <tr>
+      <td style="text-align:center;vertical-align:middle"><span class="ra-num">5</span></td>
+      <td>CAC middleware version variance across dev hardware<br>
+        <button class="ra-btn" onclick="toggleRA('r5')">▶ Analysis</button></td>
+      <td>S6–S9</td>
+      <td><span class="lbl la">MED</span></td>
+      <td>Inventory hardware in June; test on at least two card-reader variants</td>
+      <td>Lead Dev</td>
+    </tr>
+    <tr class="ra-body" id="rd-r5">
+      <td></td>
+      <td colspan="5"><div class="ra-inner">
+        <p><span class="dk">DISCO-22</span> implements the offline authentication flow against a single test environment; <span class="dk">DISCO-21</span> implements the IPC bridge that authentication depends on. Neither ticket specifies a target PC/SC middleware version, because that detail was not surfaced in the <span class="dk">DISCO-16</span> research phase. DoD workstations do not carry a uniform PC/SC stack: different hardware vendors ship different drivers, and MECM-managed images may freeze middleware at versions diverging by years from what developers run on unmanaged machines.</p>
+        <p>A middleware variance manifesting as a silent authentication failure is more dangerous than a hard compilation error: the app opens, the maintainer inserts their CAC, authentication appears to succeed locally, but EDIPI validation against the <span class="dk">DISCO-25</span> activeUser endpoint fails without a clear error surface — the symptom looks like a data issue rather than a driver issue. The risk window spans DISCO Sprints 6–9 because that is when DISCO-22 is exercised alongside actual form-save workflows on a broader set of hardware for the first time. Catching a variance in S6 or S7 leaves two full sprints before the M4 demo for remediation; catching it in S9 leaves one week.</p>
+        <div class="ra-issues"><span class="dk">DISCO-22</span><span class="dk">DISCO-21</span><span class="dk">DISCO-25</span><span class="dk">DISCO-16 ✓</span><span style="font-size:9px;color:#5f5e5a">winscard.dll middleware variance</span></div>
+      </div></td>
+    </tr>
+
+    <!-- R6 -->
+    <tr>
+      <td style="text-align:center;vertical-align:middle"><span class="ra-num">6</span></td>
+      <td>Chromium CVE released during the build window<br>
+        <button class="ra-btn" onclick="toggleRA('r6')">▶ Analysis</button></td>
+      <td>All</td>
+      <td><span class="lbl la">MED</span></td>
+      <td>Subscribe to Electron security advisories; enforce a 15-day critical-patch SLA</td>
+      <td>DevOps</td>
+    </tr>
+    <tr class="ra-body" id="rd-r6">
+      <td></td>
+      <td colspan="5"><div class="ra-inner">
+        <p>Electron bundles a specific Chromium version. A critical CVE against that version requires the team to update the Electron dependency, run <code>electron-rebuild</code> to recompile native modules (including <code>node-pcsclite</code>), re-sign the installer through the <span class="dk">DISCO-24</span> code-signing pipeline, and push a new artifact through <span class="dk">DISCO-23</span>'s CI/CD build. The Key Design Decision paper identifies this explicitly as a perpetual update burden without an equivalent in a browser-native architecture — in that model, the browser vendor patches Chromium transparently.</p>
+        <p><span class="dk">DISCO-23</span>'s completion quality in DISCO Sprint 3 sets the ceiling for how well the team handles this risk for the remaining thirteen sprints. A well-structured pipeline absorbs a CVE patch in a few hours — update the Electron version pin, trigger the build, sign the output. A fragile pipeline turns the same event into a multi-day engineering interruption that disrupts the sprint's primary deliverable. The risk is rated MED rather than HIGH because the mitigations are known and implementable from the outset; the decision to subscribe to Electron security advisories and define a patch SLA requires no additional development work.</p>
+        <div class="ra-issues"><span class="dk">DISCO-23</span><span class="dk">DISCO-24</span><span style="font-size:9px;color:#5f5e5a">Electron security advisories subscription required</span></div>
+      </div></td>
+    </tr>
+
   </table>
   <div style="text-align:right;margin-top:4px"><a href="https://fiveforty.atlassian.net/jira/software/projects/DISCO/boards/827" style="font-size:10px;color:#185FA5">📋 View DISCO Board →</a></div>
 </section>
@@ -1028,7 +1155,7 @@ tr:nth-child(even) td{background:#fafaf8}
   <div class="card">
     <div class="sr-hdr">
       <h2>Digital Binder · Tier 1 Offline Capability · Status Report</h2>
-      <p>Classification: <span class="edt" contenteditable="true">[SET AS APPROPRIATE]</span> &nbsp;|&nbsp; Reporting Period: <span class="edt" contenteditable="true">Jira sync · 2026-06-25</span> &nbsp;|&nbsp; Prepared by: <span class="edt" contenteditable="true">Team Lead</span> &nbsp;|&nbsp; Date: <span class="edt" contenteditable="true">24 Jun 2026</span></p>
+      <p>Classification: <span class="edt" contenteditable="true">[SET AS APPROPRIATE]</span> &nbsp;|&nbsp; Reporting Period: <span class="edt" contenteditable="true">DISCO Sprint 3 · June 2026 · Milestone 1</span> &nbsp;|&nbsp; Prepared by: <span class="edt" contenteditable="true">Team Lead</span> &nbsp;|&nbsp; Date: <span class="edt" contenteditable="true">24 Jun 2026</span></p>
     </div>
 
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
@@ -1047,15 +1174,15 @@ tr:nth-child(even) td{background:#fafaf8}
     <div class="sl">2 · Key Metrics</div>
     <div class="g4" style="margin-bottom:8px">
       <div class="mbox"><div class="mbox-n">0</div><div class="mbox-l">Completed (last 24h)</div></div>
-      <div class="mbox"><div class="mbox-n">8</div><div class="mbox-l">Active (In Progress + Peer Review)</div></div>
+      <div class="mbox"><div class="mbox-n">7</div><div class="mbox-l">Active (In Progress + Peer Review)</div></div>
       <div class="mbox"><div class="mbox-n" style="color:#5f5e5a">0</div><div class="mbox-l">Blocked (status not configured)</div></div>
       <div class="mbox"><div class="mbox-n" style="color:#5f5e5a">0</div><div class="mbox-l">High-Priority Open (none set)</div></div>
     </div>
     <table>
       <tr><th>Status distribution (68 total · 6 epics + 62 children)</th><th style="width:90px">Count</th></tr>
       <tr><td>⬜ To Do <span style="color:#5f5e5a">(50 child issues + 6 epics, all unassigned)</span></td><td>56</td></tr>
-      <tr><td>🔄 In Progress</td><td>4</td></tr>
-      <tr><td>🔍 Peer Review</td><td>4</td></tr>
+      <tr><td>🔄 In Progress</td><td>5</td></tr>
+      <tr><td>🔍 Peer Review</td><td>2</td></tr>
       <tr><td>✅ Done</td><td>5</td></tr>
     </table>
     <div class="note" style="margin-top:6px"><strong>Note on the zero entries.</strong> "Blocked" returns zero because DISCO's workflow does not include that status (To Do → In Progress → Peer Review → Done). "High-Priority Open" returns zero because no issue currently carries a Highest or High value — every prioritized issue in DISCO is set to "Lowest." Both are reported as confirmed states, not data gaps.</div>
@@ -1430,6 +1557,19 @@ function patchCheckboxSave() {
       // Remove the inline onchange so we don't double-fire
       el.removeAttribute('onchange');
     });
+}
+
+// ─── Risk Assessment expand/collapse ────────────────────────
+function toggleRA(id){
+  const body = document.getElementById('rd-'+id);
+  const btn = event.currentTarget;
+  if(body.style.display==='table-row'){
+    body.style.display='none';
+    btn.textContent='▶ Analysis';
+  } else {
+    body.style.display='table-row';
+    btn.textContent='▼ Analysis';
+  }
 }
 
 // ─── Init ────────────────────────────────────────────────────
